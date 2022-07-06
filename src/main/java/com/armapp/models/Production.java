@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 /**
  * @author - Akash
@@ -25,8 +26,8 @@ public class Production {
     private Integer productionId;
     private String productionCompanyName;
     private String createdBy;
-    private String createdAt;
+    private LocalDate createdAt;
     private String updatedBy;
-    private String updatedAt;
-    private String isDeleted;
+    private LocalDate updatedAt;
+    private boolean isDeleted;
 }

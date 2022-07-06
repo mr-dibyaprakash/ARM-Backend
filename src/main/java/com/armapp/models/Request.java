@@ -53,8 +53,9 @@ public class Request {
     private Set<Task> tasks;
 
     private String createdBy;
-    private String createdAt;
+    private LocalDate createdAt;
     private String updatedBy;
-    private String updatedAt;
-    private String isDeleted;
+    private LocalDate updatedAt;
+    private boolean isDeleted;
+
 }
