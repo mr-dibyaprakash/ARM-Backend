@@ -1,4 +1,4 @@
-package com.armapp.models;
+package com.armapp.model;
 
 import lombok.*;
 
@@ -18,17 +18,18 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Task {
+public class Talent {
 
     @Id
     @GeneratedValue
-    @Column(name="task_id")
-    private Integer taskId;
-    private int requestId;
+    @Column(name = "talent_id")
+    private Integer talentId;
+    private String talentName;
 
     private String createdBy;
     private String createdAt;
     private String updatedBy;
     private String updatedAt;
     private String isDeleted;
+
 }
