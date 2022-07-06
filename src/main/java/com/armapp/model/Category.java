@@ -1,4 +1,4 @@
-package com.armapp.models;
+package com.armapp.model;
 
 import lombok.*;
 
@@ -18,17 +18,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class RequestSchedule {
+public class Category {
     @Id
     @GeneratedValue
-    private Integer requestScheduleId;
-    private LocalDate requestCreated;
-    private LocalDate expectedClosure;
-    private LocalDate auditStartDate;
-    private LocalDate auditEndDate;
-    private LocalDate reportSubmission;
-    private LocalDate settlementDate;
-    private LocalDate receiptDate;
+    private Integer categoryId;
+    private String reportType;
     private String createdBy;
     private LocalDate createdAt;
     private String updatedBy;

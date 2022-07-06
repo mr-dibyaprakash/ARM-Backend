@@ -1,4 +1,4 @@
-package com.armapp.models;
+package com.armapp.model;
 
 import lombok.*;
 

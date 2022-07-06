@@ -1,4 +1,4 @@
-package com.armapp.models;
+package com.armapp.model;
 
 import lombok.*;
 
@@ -19,18 +19,15 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Talent {
-
+public class Production {
     @Id
     @GeneratedValue
-    @Column(name = "talent_id")
-    private Integer talentId;
-    private String talentName;
-
+    @Column(name = "production_id")
+    private Integer productionId;
+    private String productionCompanyName;
     private String createdBy;
     private LocalDate createdAt;
     private String updatedBy;
     private LocalDate updatedAt;
     private boolean isDeleted;
-
 }

@@ -1,7 +1,8 @@
-package com.armapp.models;
+package com.armapp.model;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,14 +19,18 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Reporter {
+public class Talent {
+
     @Id
     @GeneratedValue
-    private Integer reporterId;
-    private String reporterName;
+    @Column(name = "talent_id")
+    private Integer talentId;
+    private String talentName;
+
     private String createdBy;
     private LocalDate createdAt;
     private String updatedBy;
     private LocalDate updatedAt;
     private boolean isDeleted;
+
 }

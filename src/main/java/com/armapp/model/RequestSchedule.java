@@ -1,8 +1,7 @@
-package com.armapp.models;
+package com.armapp.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,14 +18,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Task {
-
+public class RequestSchedule {
     @Id
     @GeneratedValue
-    @Column(name="task_id")
-    private Integer taskId;
-    private int requestId;
-
+    private Integer requestScheduleId;
+    private LocalDate requestCreated;
+    private LocalDate expectedClosure;
+    private LocalDate auditStartDate;
+    private LocalDate auditEndDate;
+    private LocalDate reportSubmission;
+    private LocalDate settlementDate;
+    private LocalDate receiptDate;
     private String createdBy;
     private LocalDate createdAt;
     private String updatedBy;
