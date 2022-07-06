@@ -1,4 +1,4 @@
-package com.armapp.models;
+package com.armapp.model;
 
 import lombok.*;
 
@@ -17,11 +17,11 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Reporter {
+public class Category {
     @Id
     @GeneratedValue
-    private Integer reporterId;
-    private String reporterName;
+    private Integer categoryId;
+    private String reportType;
     private String createdBy;
     private String createdAt;
     private String updatedBy;
