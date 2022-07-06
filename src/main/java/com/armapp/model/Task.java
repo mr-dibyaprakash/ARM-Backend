@@ -1,7 +1,8 @@
-package com.armapp.models;
+package com.armapp.model;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,11 +18,14 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Project {
+public class Task {
+
     @Id
     @GeneratedValue
-    private Integer projectId;
-    private String projectName;
+    @Column(name="task_id")
+    private Integer taskId;
+    private int requestId;
+
     private String createdBy;
     private String createdAt;
     private String updatedBy;
