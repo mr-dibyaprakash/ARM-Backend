@@ -1,4 +1,4 @@
-package com.armapp.repositories;
-
-public interface DummyRepo {
-}
+//package com.armapp.repositories;
+//
+//public interface DummyRepo  {
+//}
