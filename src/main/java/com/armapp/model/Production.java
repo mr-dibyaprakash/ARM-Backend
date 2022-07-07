@@ -2,11 +2,9 @@ package com.armapp.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * @author - Akash
@@ -20,11 +18,19 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 public class Production {
+
     @Id
-    @GeneratedValue
     @Column(name = "production_id")
     private Integer productionId;
     private String productionCompanyName;
+
+    @OneToOne
+    @JoinColumn(name = "request_id")
+    private Request request;
+
+    @OneToMany(mappedBy = "production")
+    private Set<Project> projects;
+
     private String createdBy;
     private LocalDate createdAt;
     private String updatedBy;

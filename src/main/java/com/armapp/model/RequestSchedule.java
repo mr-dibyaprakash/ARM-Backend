@@ -20,7 +20,6 @@ import java.time.LocalDate;
 @ToString
 public class RequestSchedule {
     @Id
-    @GeneratedValue
     private Integer requestScheduleId;
     private LocalDate requestCreated;
     private LocalDate expectedClosure;

@@ -2,9 +2,7 @@ package com.armapp.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
@@ -20,9 +18,15 @@ import java.time.LocalDate;
 @ToString
 public class Category {
     @Id
-    @GeneratedValue
     private Integer categoryId;
     private String reportType;
+    @ManyToOne
+    @JoinColumn(name = "report_id")
+    private Report report;
+    @OneToOne
+    @JoinColumn(name = "reporter_id")
+    private Reporter reporter;
+
     private String createdBy;
     private LocalDate createdAt;
     private String updatedBy;

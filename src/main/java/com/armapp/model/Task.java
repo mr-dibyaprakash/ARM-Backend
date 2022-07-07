@@ -22,7 +22,6 @@ import java.time.LocalDate;
 public class Task {
 
     @Id
-    @GeneratedValue
     @Column(name="task_id")
     private Integer taskId;
     private int requestId;

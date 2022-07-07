@@ -2,10 +2,9 @@ package com.armapp.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * @author - Akash
@@ -20,9 +19,20 @@ import java.time.LocalDate;
 @ToString
 public class Project {
     @Id
-    @GeneratedValue
     private Integer projectId;
     private String projectName;
+
+    @ManyToOne
+    @JoinColumn(name = "production_id")
+    private Production production;
+
+    @ManyToMany
+    @JoinTable(name = "talent_project",
+            joinColumns = {@JoinColumn(name = "project_id")},
+            inverseJoinColumns = {@JoinColumn(name ="talent_id")}
+    )
+    private Set<Talent> talents;
+
     private String createdBy;
     private LocalDate createdAt;
     private String updatedBy;
