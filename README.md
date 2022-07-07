@@ -7,6 +7,8 @@
 4. Spring Web
 5. Flyway Core
 6. Flyway Mysql
+7. Log4J2
+
 
 ## Added packages
 >1. controllers
