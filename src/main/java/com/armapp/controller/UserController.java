@@ -7,7 +7,7 @@
 package com.armapp.controller;
 
 import com.armapp.model.User;
-import com.armapp.service.DummyService;
+import com.armapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,18 +22,18 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     @Autowired
-    private DummyService dummyService;
+    private UserService userService;
 
     @GetMapping()
     @RolesAllowed("admin")
     public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(dummyService.getAll());
+        return ResponseEntity.ok(userService.getAll());
     }
 
 
     @GetMapping("/{id}")
     @RolesAllowed("user")
     public ResponseEntity<User> getById(@PathVariable("id") int id) {
-        return ResponseEntity.ok(dummyService.getUser(id));
+        return ResponseEntity.ok(userService.getUser(id));
     }
 }

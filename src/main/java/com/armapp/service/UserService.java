@@ -1,7 +1,7 @@
 package com.armapp.service;
 
 import com.armapp.model.User;
-import com.armapp.repository.DummyRepo;
+import com.armapp.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class DummyService {
+public class UserService {
     @Autowired
-    private DummyRepo dummyRepo;
+    private UserRepo userRepo;
 
     @PostConstruct   // it will initialize the user in the runtime
     public void initializeUser(){
-        dummyRepo.saveAll(Stream.of(
+        userRepo.saveAll(Stream.of(
                 new User(1, "Baba"),
                 new User(2, "Dibya"),
                 new User(3, "Awadhesh"))
@@ -26,12 +26,12 @@ public class DummyService {
 
     // getting the user by id
     public User getUser(int id){
-        return  dummyRepo.findById(id).orElse(null);
+        return  userRepo.findById(id).orElse(null);
     }
 
     // getting all users
     public List<User> getAll(){
-        return dummyRepo.findAll();
+        return userRepo.findAll();
     }
 
 }
