@@ -1,0 +1,25 @@
+version: "3"
+services:
+  arm-api: # name of the container
+    image: arm-app/arm-repo:arm-api
+    networks:
+      - arm_sql
+    ports:
+      - "8096:9090"
+    depends_on:
+      - mysqldb
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - data/arm-api
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - arm_sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=arm
+networks:
+  arm_sql:
