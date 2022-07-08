@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 /**
  * @author - Akash
@@ -21,14 +22,13 @@ import javax.persistence.Id;
 public class Task {
 
     @Id
-    @GeneratedValue
     @Column(name="task_id")
     private Integer taskId;
     private int requestId;
 
     private String createdBy;
-    private String createdAt;
+    private LocalDate createdAt;
     private String updatedBy;
-    private String updatedAt;
-    private String isDeleted;
+    private LocalDate updatedAt;
+    private boolean isDeleted;
 }

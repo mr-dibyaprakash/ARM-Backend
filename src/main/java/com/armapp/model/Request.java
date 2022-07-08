@@ -20,41 +20,31 @@ import java.util.Set;
 public class Request {
 
     @Id
-    @GeneratedValue
     private Integer requestId;
-    @Enumerated(EnumType.STRING)
-    private Priority priority;
-    @Enumerated(EnumType.STRING)
-    private Union union;
-    @Enumerated(EnumType.STRING)
-    private Status status;
+//    @Enumerated(EnumType.STRING)
+    private String priority;
+//    @Enumerated(EnumType.STRING)
+    private String union;
+//    @Enumerated(EnumType.STRING)
+    private String status;
     private LocalDate requestCreatedDate;
     private LocalDate contractDate;
 
     @OneToOne
-    @JoinColumn(name = "production_id")
+    @JoinColumn(name = "report_id")
+    private Report report;
+
+    @OneToOne(mappedBy = "request")
     private Production productionCompanyName;
-
-    @OneToOne
-    @JoinColumn(name = "project_id")
-    private Project projectName;
-
-    @OneToOne
-    @JoinColumn(name = "talent_id")
-    private Talent talentName;
 
     @OneToOne
     @JoinColumn(name = "request_schedule_id")
     private RequestSchedule requestSchedule;
 
-    @OneToMany
-    @JoinColumn(name="task_id")
-    @ToString.Exclude
-    private Set<Task> tasks;
-
     private String createdBy;
-    private String createdAt;
+    private LocalDate createdAt;
     private String updatedBy;
-    private String updatedAt;
-    private String isDeleted;
+    private LocalDate updatedAt;
+    private boolean isDeleted;
+
 }

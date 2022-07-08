@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * @author - Akash
- * @date - 05-07-2022
+ * @date - 07-07-2022
  * @project - Acheron-Training-AUDIT-REQUEST-MANAGEMENT-BACKEND
  */
 @Entity
@@ -17,21 +17,17 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Project {
+public class Report {
     @Id
-    private Integer projectId;
-    private String projectName;
+    private Integer reportId;
+    private LocalDate audit_start_date;
+    private LocalDate audit_end_date;
 
-    @ManyToOne
-    @JoinColumn(name = "production_id")
-    private Production production;
+    @OneToOne(mappedBy = "report")
+    private Request request;
 
-    @ManyToMany
-    @JoinTable(name = "talent_project",
-            joinColumns = {@JoinColumn(name = "project_id")},
-            inverseJoinColumns = {@JoinColumn(name ="talent_id")}
-    )
-    private Set<Talent> talents;
+    @OneToMany(mappedBy = "report")
+    private Set<Category> category;
 
     private String createdBy;
     private LocalDate createdAt;

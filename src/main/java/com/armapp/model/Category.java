@@ -2,9 +2,8 @@ package com.armapp.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 /**
  * @author - Akash
@@ -19,12 +18,18 @@ import javax.persistence.Id;
 @ToString
 public class Category {
     @Id
-    @GeneratedValue
     private Integer categoryId;
     private String reportType;
+    @ManyToOne
+    @JoinColumn(name = "report_id")
+    private Report report;
+    @OneToOne
+    @JoinColumn(name = "reporter_id")
+    private Reporter reporter;
+
     private String createdBy;
-    private String createdAt;
+    private LocalDate createdAt;
     private String updatedBy;
-    private String updatedAt;
-    private String isDeleted;
+    private LocalDate updatedAt;
+    private boolean isDeleted;
 }

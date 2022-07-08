@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import java.time.LocalDate;
 
 /**
  * @author - Akash
@@ -19,12 +21,15 @@ import javax.persistence.Id;
 @ToString
 public class Reporter {
     @Id
-    @GeneratedValue
     private Integer reporterId;
     private String reporterName;
+
+    @OneToOne(mappedBy = "reporter")
+    private Category category;
+
     private String createdBy;
-    private String createdAt;
+    private LocalDate createdAt;
     private String updatedBy;
-    private String updatedAt;
-    private String isDeleted;
+    private LocalDate updatedAt;
+    private boolean isDeleted;
 }
