@@ -6,9 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
- * @author - Akash
+ * @author - Akash Kanaparthi
  * @date - 05-07-2022
  * @project - Acheron-Training-AUDIT-REQUEST-MANAGEMENT-BACKEND
  */
@@ -29,8 +30,8 @@ public class RequestSchedule {
     private LocalDate settlementDate;
     private LocalDate receiptDate;
     private String createdBy;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
     private String updatedBy;
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
     private boolean isDeleted;
 }

@@ -4,10 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
- * @author - Akash
+ * @author - Akash Kanaparthi
  * @date - 07-07-2022
  * @project - Acheron-Training-AUDIT-REQUEST-MANAGEMENT-BACKEND
  */
@@ -30,8 +31,8 @@ public class Report {
     private Set<Category> category;
 
     private String createdBy;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
     private String updatedBy;
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
     private boolean isDeleted;
 }

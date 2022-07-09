@@ -1,7 +1,7 @@
 package com.armapp.model;
 
 /**
- * @author - Akash
+ * @author - Akash Kanaparthi
  * @date - 05-07-2022
  * @project - Acheron-Training-AUDIT-REQUEST-MANAGEMENT-BACKEND
  */

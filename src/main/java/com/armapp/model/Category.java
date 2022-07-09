@@ -3,10 +3,10 @@ package com.armapp.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
- * @author - Akash
+ * @author - Akash Kanaparthi
  * @date - 05-07-2022
  * @project - Acheron-Training-AUDIT-REQUEST-MANAGEMENT-BACKEND
  */
@@ -28,8 +28,8 @@ public class Category {
     private Reporter reporter;
 
     private String createdBy;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
     private String updatedBy;
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
     private boolean isDeleted;
 }

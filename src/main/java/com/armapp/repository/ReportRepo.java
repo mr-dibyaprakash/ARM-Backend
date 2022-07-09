@@ -1,7 +1,7 @@
 package com.armapp.repository;
 
-import com.armapp.model.Project;
-import com.armapp.model.Request;
+import com.armapp.model.Category;
+import com.armapp.model.Report;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @project : audit-request-management
  */
 @Repository
-public interface ProjectRepo extends JpaRepository<Project, Integer> {
+public interface ReportRepo extends JpaRepository<Report, Integer> {
 }
