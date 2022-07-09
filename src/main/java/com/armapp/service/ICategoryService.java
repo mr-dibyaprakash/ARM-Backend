@@ -16,7 +16,7 @@ public interface ICategoryService {
 
     void addCategory(Set<Category> category);
     void updateCategory(Category category);
-    void deleteCategory(int categoryId) throws InvalidIdException ;
+    void deleteCategory(int categoryId) throws InvalidIdException;
     Category getById(int categoryId) throws InvalidIdException;
 
     List<Category> getAll();

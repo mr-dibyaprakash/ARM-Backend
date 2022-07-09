@@ -53,7 +53,7 @@ public class TalentServiceImpl implements ITalentService{
      * @throws InvalidIdException
      */
     @Override
-    public void deleteTalent(int talentId) throws InvalidIdException{
+    public void deleteTalent(int talentId) throws InvalidIdException {
         Talent talent = talentRepo.findById(talentId).get();
         talent.setDeleted(true);
         talentRepo.save(talent);

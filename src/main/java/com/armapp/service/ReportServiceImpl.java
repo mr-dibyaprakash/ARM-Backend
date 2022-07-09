@@ -6,7 +6,6 @@ import com.armapp.repository.ReportRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -53,7 +52,7 @@ public class ReportServiceImpl implements IReportService{
      * @throws InvalidIdException
      */
     @Override
-    public void deleteReport(int reportId) throws InvalidIdException{
+    public void deleteReport(int reportId) throws InvalidIdException {
         Report report = reportRepo.findById(reportId).get();
         report.setDeleted(true);
         reportRepo.save(report);
