@@ -21,6 +21,7 @@
 - Services
 
 ### Flyway Integration
+- Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.It is based around just 7 basic commands: Migrate, Clean, Info, Validate, Undo, Baseline and Repair.
 . Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.It is based around just 7 basic commands: Migrate, Clean, Info, Validate, Undo, Baseline and Repair.
  the classpath of the directory is db/migration
 
@@ -37,7 +38,7 @@ Windows
 
 > ...\bin\standalone.bat
 
-##Installing and booting Keycloak from server distribution:
+## Installing and booting Keycloak from server distribution:
 
 - Download the Keycloak Server from the official website. I'm using the latest release of the standalone server distribution
 
@@ -49,6 +50,16 @@ Windows
 - By default, the Keycloak server will be reachable on the 8080 port. We could set custom port by setting optional param while starting keycloak server “jboss.socket.binding.port-offset“
 
 
+## Run Keycloak with persisting data:
+
+Run Keycloak using Docker compose file
+```
+    docker-compose -f docker-compose-keycloak.yml up -d 
+```
+- Keycloak will be available on http://localhost:8081/
+- Create a realm `myrealm` and client `myclient`
+- Create a user and add necessary roles
+- [Reference](https://medium.com/@max.mayr/keycloak-and-spring-boot-security-b069306b0fb0)
 ##Installing and booting Keycloak as a Docker container:
 
 - We can also run Keycloak in a Docker container, relying on the official Docker image.
