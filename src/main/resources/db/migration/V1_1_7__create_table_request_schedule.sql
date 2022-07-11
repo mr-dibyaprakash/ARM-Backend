@@ -1,5 +1,5 @@
 
-CREATE TABLE request_schedule(
+CREATE TABLE  IF NOT EXISTS `request_schedule`(
 request_schedule_id integer  NOT NULL AUTO_INCREMENT,
 request_created date NOT NULL,
 expected_closure date NOT NULL ,

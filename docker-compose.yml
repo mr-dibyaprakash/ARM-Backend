@@ -1,25 +1,40 @@
-version: "3"
-services:
-  arm-api: # name of the container
-    image: arm-app/arm-repo:arm-api
-    networks:
-      - arm_sql
-    ports:
-      - "8096:9090"
-    depends_on:
-      - mysqldb
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    volumes:
-      - data/arm-api
+version: '3'
 
-  mysqldb:
-    image: mysql:8
-    networks:
-      - arm_sql
+services:
+
+  keycloak:
+    image: jboss/keycloak:4.0.0.Final
+    restart: on-failure
+    command:
+      - "-b"
+      - "0.0.0.0"
+      - "-Dkeycloak.migration.action=import"
+      - "-Dkeycloak.migration.provider=dir"
+      - "-Dkeycloak.migration.dir=/config/"
+      - "-Dkeycloak.migration.strategy=IGNORE_EXISTING"
+    volumes:
+      - ./config:/config/
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=arm
-networks:
-  arm_sql:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=mysql
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_ADDR=keycloak-db
+      - DB_PORT=3306
+      - DB_DATABASE=keycloakdb
+    ports:
+      - "8080:8080"
+    depends_on:
+      - keycloak-db
+
+  keycloak-db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      POSTGRES_DB: keycloakdb
+    volumes:
+      - pgdata:/var/lib/mysql/data
+
+volumes:
+  pgdata:

@@ -1,7 +1,7 @@
 
 
 
-CREATE TABLE reporter (
+CREATE TABLE  IF NOT EXISTS  `reporter` (
 reporter_id integer  NOT NULL AUTO_INCREMENT,
 reporter_name varchar(45),
 created_by varchar(100) NOT NULL,

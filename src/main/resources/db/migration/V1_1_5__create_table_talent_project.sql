@@ -1,4 +1,4 @@
-CREATE TABLE talent_project(
+CREATE TABLE  IF NOT EXISTS `talent_project`(
   talent_id integer NOT NULL,
   project_id integer NOT NULL,
   PRIMARY KEY (talent_id,project_id),

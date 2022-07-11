@@ -1,6 +1,6 @@
 
 
-CREATE TABLE category(
+CREATE TABLE  IF NOT EXISTS `category`(
 category_id integer   NOT NULL AUTO_INCREMENT,
 report_type varchar(250) NOT NULL,
 reporter_id int,

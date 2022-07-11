@@ -1,4 +1,4 @@
-CREATE TABLE report(
+CREATE TABLE  IF NOT EXISTS `report`(
 report_id integer  NOT NULL AUTO_INCREMENT,
 category varchar(150) NOT NULL,
 audit_start_date date NOT NULL,

@@ -1,5 +1,5 @@
 
-CREATE TABLE request (
+CREATE TABLE  IF NOT EXISTS `request` (
 request_id integer  NOT NULL AUTO_INCREMENT,
 priority varchar(45) NOT NULL,
 union_name varchar(45) NOT NULL,
