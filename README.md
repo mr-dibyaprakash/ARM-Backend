@@ -25,7 +25,7 @@ Run Keycloak using Docker compose file
 ```
     docker-compose -f docker-compose-keycloak.yml up -d 
 ```
-- Keycloak will be available on http://localhost:8081/
+- Keycloak will be available on http://localhost:7688/
 - Create a realm `myrealm` and client `myclient`
 - Create a user and add necessary roles
 - [Reference](https://medium.com/@max.mayr/keycloak-and-spring-boot-security-b069306b0fb0)
