@@ -1,6 +1,6 @@
 # Added Initial Setup:
 
-> ## Dependencies Added:
+ ## Dependencies Added:
 - Lombok 
 - MySql Driver 
 - Spring Data Jpa 
@@ -14,12 +14,12 @@
 - Dozen Mapper
 
 
-> ## Flyway Integration:
+ ## Flyway Integration:
 - Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.It is based around just 7 basic commands: Migrate, Clean, Info, Validate, Undo, Baseline and Repair.
 . Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.It is based around just 7 basic commands: Migrate, Clean, Info, Validate, Undo, Baseline and Repair.
  the classpath of the directory is db/migration
 
-> ## Run Keycloak with persisting data:
+ ## Run Keycloak with persisting data:
 
 Run Keycloak using Docker compose file
 ```
@@ -30,7 +30,7 @@ Run Keycloak using Docker compose file
 - Create a user and add necessary roles
 - [Reference](https://medium.com/@max.mayr/keycloak-and-spring-boot-security-b069306b0fb0)
 
-> ##Run MySQL Database with Spring-boot Application:
+ ##Run MySQL Database with Spring-boot Application:
 Run MYSQL using Docker compose file
 ```
     docker-compose -f docker-compose.yml up -d 
