@@ -27,20 +27,21 @@
             <b>productionCompanyName</b>
         </field>
         <field>
-            <a>projectName</a>
+            <a>productionCompanyName.projects.projectName</a>
             <b>projectName</b>
-        </field><field>
-        <a>talentName</a>
-        <b>talentName</b>
-    </field>
+        </field>
+        <field>
+            <a>productionCompanyName.projects.talents.talentName</a>
+            <b>talentName</b>
+        </field>
         <field>
             <a>requestSchedule</a>
             <b>requestSchedule</b>
         </field>
-        <field>
-            <a>tasks</a>
-            <b>tasks</b>
-        </field>
+<!--        <field>-->
+<!--            <a>tasks</a>-->
+<!--            <b>tasks</b>-->
+<!--        </field>-->
     </mapping>
     <mapping>
     <class-a>com.armapp.model.Production</class-a>
@@ -53,6 +54,7 @@
         <a>productionCompanyName</a>
         <b>productionCompanyName</b>
     </field>
+    </mapping>
     <mapping>
         <class-a>com.armapp.model.Project</class-a>
         <class-b>com.armapp.modelDTOs.ProjectVO</class-b>
@@ -82,14 +84,14 @@
         </field>
     </mapping>
     <mapping>
-        <class-a>com.armapp.model.Task</class-a>
+        <class-a>com.armapp.model.Request</class-a>
         <class-b>com.armapp.modelDTOs.TaskVO</class-b>
         <field>
             <a>requestId</a>
             <b>requestId</b>
         </field>
         <field>
-            <a>category</a>
+            <a>report.category.reportType</a>
             <b>taskDescription</b>
         </field>
         <field>
@@ -97,11 +99,11 @@
             <b>productionCompanyName</b>
         </field>
         <field>
-            <a>projectName</a>
+            <a>productionCompanyName.projects.projectName</a>
             <b>projectName</b>
         </field>
         <field>
-            <a>talentName</a>
+            <a>productionCompanyName.projects.talents.talentName</a>
             <b>talentName</b>
         </field>
         <field>
@@ -109,11 +111,11 @@
             <b>priority</b>
         </field>
         <field>
-            <a>auditPeriod</a>
+            <a>report</a>
             <b>auditPeriod</b>
         </field>
         <field>
-            <a>dates</a>
+            <a>requestSchedule</a>
             <b>dates</b>
         </field>
     </mapping>

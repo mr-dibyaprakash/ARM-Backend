@@ -29,6 +29,6 @@ public class RequestVO {
     private ProjectVO projectName;
     private TalentVO talentName;
     private RequestScheduleVO requestSchedule;
-    private Set<Task> tasks;
+//    private Set<Task> tasks;
 
 }
