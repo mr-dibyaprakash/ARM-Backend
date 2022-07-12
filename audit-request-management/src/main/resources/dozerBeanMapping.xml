@@ -11,8 +11,8 @@
             <b>requestId</b>
         </field>
         <field>
-            <a>status</a>
-            <b>status</b>
+            <a>priority</a>
+            <b>priority</b>
         </field>
         <field>
             <a>union</a>
@@ -23,14 +23,6 @@
             <b>status</b>
         </field>
         <field>
-            <a>requestCreatedDate</a>
-            <b>requestCreatedDate</b>
-        </field>
-        <field>
-            <a>contractDate</a>
-            <b>contractDate</b>
-        </field>
-        <field>
             <a>productionCompanyName</a>
             <b>productionCompanyName</b>
         </field>
@@ -38,9 +30,9 @@
             <a>projectName</a>
             <b>projectName</b>
         </field><field>
-            <a>talentName</a>
-            <b>talentName</b>
-        </field>
+        <a>talentName</a>
+        <b>talentName</b>
+    </field>
         <field>
             <a>requestSchedule</a>
             <b>requestSchedule</b>
@@ -51,76 +43,27 @@
         </field>
     </mapping>
     <mapping>
-        <class-a>com.armapp.model.Production</class-a>
-        <class-b>com.armapp.modelDTOs.ProductionVO</class-b>
-        <field>
-            <a>productionId</a>
-            <b>productionId</b>
-        </field>
-        <field>
-            <a>productionCompanyName</a>
-            <b>productionCompanyName</b>
-        </field>
-        <field>
-            <a>createdBy</a>
-            <b>createdBy</b>
-        </field>
-        <field>
-            <a>createdAt</a>
-            <b>createdAt</b>
-        </field>
-        <field>
-            <a>updatedBy</a>
-            <b>updatedBy</b>
-        </field>
-        <field>
-            <a>updatedAt</a>
-            <b>updatedAt</b>
-        </field>
-        <field>
-            <a>isDeleted</a>
-            <b>isDeleted</b>
-        </field>
-    </mapping>
+    <class-a>com.armapp.model.Production</class-a>
+    <class-b>com.armapp.modelDTOs.ProductionVO</class-b>
+    <field>
+        <a>productionId</a>
+        <b>productionId</b>
+    </field>
+    <field>
+        <a>productionCompanyName</a>
+        <b>productionCompanyName</b>
+    </field>
     <mapping>
         <class-a>com.armapp.model.Project</class-a>
         <class-b>com.armapp.modelDTOs.ProjectVO</class-b>
         <field>
-            <a>projectId</a>
-            <b>projectId</b>
-        </field>
-        <field>
             <a>projectName</a>
             <b>projectName</b>
-        </field>
-        <field>
-            <a>createdBy</a>
-            <b>createdBy</b>
-        </field>
-        <field>
-            <a>createdAt</a>
-            <b>createdAt</b>
-        </field>
-        <field>
-            <a>updatedBy</a>
-            <b>updatedBy</b>
-        </field>
-        <field>
-            <a>updatedAt</a>
-            <b>updatedAt</b>
-        </field>
-        <field>
-            <a>isDeleted</a>
-            <b>isDeleted</b>
         </field>
     </mapping>
     <mapping>
         <class-a>com.armapp.model.RequestSchedule</class-a>
         <class-b>com.armapp.modelDTOs.RequestScheduleVO</class-b>
-        <field>
-            <a>requestScheduleId</a>
-            <b>requestScheduleId</b>
-        </field>
         <field>
             <a>requestCreated</a>
             <b>requestCreated</b>
@@ -129,109 +72,69 @@
             <a>expectedClosure</a>
             <b>expectedClosure</b>
         </field>
-        <field>
-            <a>auditStartDate</a>
-            <b>auditStartDate</b>
-        </field>
-        <field>
-            <a>auditEndDate</a>
-            <b>auditEndDate</b>
-        </field>
-        <field>
-            <a>reportSubmission</a>
-            <b>reportSubmission</b>
-        </field>
-        <field>
-            <a>settlementDate</a>
-            <b>settlementDate</b>
-        </field>
-        <field>
-            <a>receiptDate</a>
-            <b>receiptDate</b>
-        </field>
-        <field>
-            <a>createdBy</a>
-            <b>createdBy</b>
-        </field>
-        <field>
-            <a>createdAt</a>
-            <b>createdAt</b>
-        </field>
-        <field>
-            <a>updatedBy</a>
-            <b>updatedBy</b>
-        </field>
-        <field>
-            <a>updatedAt</a>
-            <b>updatedAt</b>
-        </field>
-        <field>
-            <a>isDeleted</a>
-            <b>isDeleted</b>
-        </field>
     </mapping>
     <mapping>
         <class-a>com.armapp.model.Talent</class-a>
         <class-b>com.armapp.modelDTOs.TalentVO</class-b>
         <field>
-            <a>talentId</a>
-            <b>talentId</b>
-        </field>
-        <field>
             <a>talentName</a>
             <b>talentName</b>
-        </field>
-        <field>
-            <a>createdBy</a>
-            <b>createdBy</b>
-        </field>
-        <field>
-            <a>createdAt</a>
-            <b>createdAt</b>
-        </field>
-        <field>
-            <a>updatedBy</a>
-            <b>updatedBy</b>
-        </field>
-        <field>
-            <a>updatedAt</a>
-            <b>updatedAt</b>
-        </field>
-        <field>
-            <a>isDeleted</a>
-            <b>isDeleted</b>
         </field>
     </mapping>
     <mapping>
         <class-a>com.armapp.model.Task</class-a>
         <class-b>com.armapp.modelDTOs.TaskVO</class-b>
         <field>
-            <a>taskId</a>
-            <b>taskId</b>
-        </field>
-        <field>
             <a>requestId</a>
             <b>requestId</b>
         </field>
         <field>
-            <a>createdBy</a>
-            <b>createdBy</b>
+            <a>category</a>
+            <b>taskDescription</b>
         </field>
         <field>
-            <a>createdAt</a>
-            <b>createdAt</b>
+            <a>productionCompanyName</a>
+            <b>productionCompanyName</b>
         </field>
         <field>
-            <a>updatedBy</a>
-            <b>updatedBy</b>
+            <a>projectName</a>
+            <b>projectName</b>
         </field>
         <field>
-            <a>updatedAt</a>
-            <b>updatedAt</b>
+            <a>talentName</a>
+            <b>talentName</b>
         </field>
         <field>
-            <a>isDeleted</a>
-            <b>isDeleted</b>
+            <a>priority</a>
+            <b>priority</b>
+        </field>
+        <field>
+            <a>auditPeriod</a>
+            <b>auditPeriod</b>
+        </field>
+        <field>
+            <a>dates</a>
+            <b>dates</b>
+        </field>
+    </mapping>
+    <mapping>
+        <class-a>com.armapp.model.Category</class-a>
+        <class-b>com.armapp.modelDTOs.CategoryVO</class-b>
+        <field>
+            <a>reportType</a>
+            <b>reportType</b>
+        </field>
+    </mapping>
+    <mapping>
+        <class-a>com.armapp.model.Report</class-a>
+        <class-b>com.armapp.modelDTOs.ReportVO</class-b>
+        <field>
+            <a>audit_start_date</a>
+            <b>audit_start_date</b>
+        </field>
+        <field>
+            <a>audit_end_date</a>
+            <b>audit_end_date</b>
         </field>
     </mapping>
 </mappings>

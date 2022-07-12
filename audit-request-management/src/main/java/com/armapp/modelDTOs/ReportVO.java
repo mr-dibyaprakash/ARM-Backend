@@ -4,14 +4,15 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class RequestScheduleVO {
+public class ReportVO {
 
-    private LocalDate requestCreated;
-    private LocalDate expectedClosure;
+    private LocalDate audit_start_date;
+    private LocalDate audit_end_date;
 
 }

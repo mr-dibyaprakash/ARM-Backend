@@ -91,7 +91,12 @@
 		<dependency>
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-spring-boot-starter</artifactId>
-
+		</dependency>
+		<!-- dozer bean mapper -->
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.5.1</version>
 		</dependency>
 	</dependencies>
 
