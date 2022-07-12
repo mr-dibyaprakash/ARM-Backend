@@ -30,7 +30,7 @@ Run Keycloak using Docker compose file
 - Create a user and add necessary roles
 - [Reference](https://medium.com/@max.mayr/keycloak-and-spring-boot-security-b069306b0fb0)
 
- ##Run MySQL Database with Spring-boot Application:
+ ## Run MySQL Database with Spring-boot Application:
 Run MYSQL using Docker compose file
 ```
     docker-compose -f docker-compose.yml up -d 
