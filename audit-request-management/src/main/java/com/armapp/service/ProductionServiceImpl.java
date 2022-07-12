@@ -2,10 +2,13 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Production;
+import com.armapp.modelDTOs.ProductionVO;
 import com.armapp.repository.ProductionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
  * @date - 08-07-2022
  * @project - Acheron-Training-AUDIT-REQUEST-MANAGEMENT-BACKEND
  */
+@Service
 public class ProductionServiceImpl implements IProductionService{
 
     private ProductionRepo productionRepo;
@@ -83,5 +87,27 @@ public class ProductionServiceImpl implements IProductionService{
                 .filter(production -> !production.isDeleted())
                 .sorted(Comparator.comparing(Production::getProductionCompanyName))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductionVO> getByProductionCompanyNameLike(String companyName) {
+        return allProductionCompanies().stream()
+                .filter(production -> production.getProductionCompanyName().contains(companyName))
+                .collect(Collectors.toList());
+    }
+
+    private List<ProductionVO> allProductionCompanies(){
+        return Arrays.asList(
+                new ProductionVO(1,"Marvel Studios"),
+                new ProductionVO(2,"Columbia Pictures"),
+                new ProductionVO(3,"Legendary Entertainment"),
+                new ProductionVO(4,"Sony Pictures"),
+                new ProductionVO(5,"HBO Studios"),
+                new ProductionVO(6,"RKO Pictures"),
+                new ProductionVO(7,"TriStar Pictures"),
+                new ProductionVO(8,"Filmways"),
+                new ProductionVO(9,"PVR Pictures"),
+                new ProductionVO(10,"Fox Film")
+                );
     }
 }

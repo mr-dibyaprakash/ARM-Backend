@@ -17,9 +17,9 @@ public class ProductionVO {
 
     private Integer productionId;
     private String productionCompanyName;
-    private String createdBy;
-    private String createdAt;
-    private String updatedBy;
-    private String updatedAt;
-    private String isDeleted;
+//    private String createdBy;
+//    private String createdAt;
+//    private String updatedBy;
+//    private String updatedAt;
+//    private String isDeleted;
 }

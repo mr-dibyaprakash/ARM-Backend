@@ -2,6 +2,7 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Production;
+import com.armapp.modelDTOs.ProductionVO;
 
 import java.util.List;
 import java.util.Set;
@@ -19,5 +20,8 @@ public interface IProductionService {
     Production getById(int productionId) throws InvalidIdException;
 
     List<Production> getAll();
+
+    List<ProductionVO> getByProductionCompanyNameLike(String companyName);
+
 
 }
