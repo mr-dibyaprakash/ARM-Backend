@@ -6,7 +6,7 @@ server:
 #data base specific properties
 spring:
    datasource:
-     url: jdbc:mysql://localhost:3306/arm
+     url: jdbc:mysql://localhost:3306/arm?createDatabaseIfNotExist=true
      username: root
      password: root
    jpa:
