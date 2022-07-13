@@ -29,7 +29,7 @@ public class RequestSchedule {
     private LocalDate settlementDate;
     private LocalDate receiptDate;
     private String createdBy;
-//    private LocalDateTime createdAt;
+    private LocalDateTime createdAt;
     private String updatedBy;
     private LocalDateTime updatedAt;
     private boolean isDeleted;

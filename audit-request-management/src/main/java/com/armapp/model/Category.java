@@ -1,5 +1,6 @@
 package com.armapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,13 +22,14 @@ public class Category {
     @Id
     private Integer categoryId;
     private String reportType;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "request_category",
             joinColumns = {@JoinColumn(name = "request_id")},
             inverseJoinColumns = {@JoinColumn(name ="category_id")}
     )
+    @JsonIgnore
     private List<Request> request;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reporter_id")
     private Reporter reporter;
 

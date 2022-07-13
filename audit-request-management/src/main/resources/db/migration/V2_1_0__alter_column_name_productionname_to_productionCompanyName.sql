@@ -1,2 +1,2 @@
 ALTER TABLE Production
-RENAME COLUMN production_name TO Production_company_name;
+RENAME COLUMN production_name TO production_company_name;

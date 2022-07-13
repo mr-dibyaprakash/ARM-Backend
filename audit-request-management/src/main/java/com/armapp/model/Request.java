@@ -35,17 +35,17 @@ public class Request {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "production_id")
-    private Production productionCompanyName;
+    private Production production;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "request_schedule_id")
     private RequestSchedule requestSchedule;
 
-    @ManyToMany(mappedBy = "request")
+    @ManyToMany(mappedBy = "request",cascade = CascadeType.ALL)
     private Set<Category> category;
 
     private String createdBy;
-//    private LocalDateTime createdAt;
+    private LocalDateTime createdAt;
     private String updatedBy;
     private LocalDateTime updatedAt;
     private boolean isDeleted;

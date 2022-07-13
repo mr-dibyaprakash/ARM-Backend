@@ -34,6 +34,7 @@ public class RequestServiceImpl implements IRequestService{
      */
     @Override
     public void addRequest(Request request) {
+        request.setCreatedAt(LocalDateTime.now());
         requestRepo.save(request);
     }
 

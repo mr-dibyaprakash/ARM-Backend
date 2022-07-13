@@ -1,5 +1,6 @@
 package com.armapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -26,6 +27,7 @@ public class Reporter {
     private String reporterName;
 
     @OneToOne(mappedBy = "reporter")
+    @JsonIgnore
     private Category category;
 
     private String createdBy;
