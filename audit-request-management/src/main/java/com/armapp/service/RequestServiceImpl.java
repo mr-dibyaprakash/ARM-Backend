@@ -30,8 +30,8 @@ public class RequestServiceImpl implements IRequestService{
      * @param request
      */
     @Override
-    public void addRequest(Set<Request> request) {
-        requestRepo.saveAll(request);
+    public void addRequest(Request request) {
+        requestRepo.save(request);
     }
 
     /**

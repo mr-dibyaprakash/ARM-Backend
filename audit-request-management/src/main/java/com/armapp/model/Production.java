@@ -25,10 +25,6 @@ public class Production {
     private Integer productionId;
     private String productionCompanyName;
 
-    @OneToOne
-    @JoinColumn(name = "request_id")
-    private Request request;
-
     @OneToMany(mappedBy = "production")
     private Set<Project> projects;
 

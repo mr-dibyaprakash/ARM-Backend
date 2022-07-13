@@ -2,9 +2,7 @@ package com.armapp.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -21,6 +19,7 @@ import java.time.LocalDateTime;
 @ToString
 public class RequestSchedule {
     @Id
+    @Column(name = "request_schedule_id")
     private Integer requestScheduleId;
     private LocalDate requestCreated;
     private LocalDate expectedClosure;
@@ -30,7 +29,7 @@ public class RequestSchedule {
     private LocalDate settlementDate;
     private LocalDate receiptDate;
     private String createdBy;
-    private LocalDateTime createdAt;
+//    private LocalDateTime createdAt;
     private String updatedBy;
     private LocalDateTime updatedAt;
     private boolean isDeleted;

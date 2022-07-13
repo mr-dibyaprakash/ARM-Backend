@@ -25,25 +25,27 @@ public class Request {
 //    @Enumerated(EnumType.STRING)
     private String priority;
 //    @Enumerated(EnumType.STRING)
-    private String union;
+    private String unionName;
 //    @Enumerated(EnumType.STRING)
     private String status;
     private LocalDate requestCreatedDate;
     private LocalDate contractDate;
+    private LocalDate auditStartDate;
+    private LocalDate auditEndDate;
 
-    @OneToOne
-    @JoinColumn(name = "report_id")
-    private Report report;
-
-    @OneToOne(mappedBy = "request")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "production_id")
     private Production productionCompanyName;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "request_schedule_id")
     private RequestSchedule requestSchedule;
 
+    @ManyToMany(mappedBy = "request")
+    private Set<Category> category;
+
     private String createdBy;
-    private LocalDateTime createdAt;
+//    private LocalDateTime createdAt;
     private String updatedBy;
     private LocalDateTime updatedAt;
     private boolean isDeleted;

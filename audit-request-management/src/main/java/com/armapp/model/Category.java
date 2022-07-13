@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author - Akash Kanaparthi
@@ -20,9 +21,12 @@ public class Category {
     @Id
     private Integer categoryId;
     private String reportType;
-    @ManyToOne
-    @JoinColumn(name = "report_id")
-    private Report report;
+    @ManyToMany
+    @JoinTable(name = "request_category",
+            joinColumns = {@JoinColumn(name = "request_id")},
+            inverseJoinColumns = {@JoinColumn(name ="category_id")}
+    )
+    private List<Request> request;
     @OneToOne
     @JoinColumn(name = "reporter_id")
     private Reporter reporter;

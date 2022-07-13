@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public interface IRequestService {
 
-    void addRequest(Set<Request> request);
+    void addRequest(Request request);
     void updateRequest(Request request);
     void deleteRequest(int requestId) throws InvalidIdException;
     Request getById(int requestId) throws InvalidIdException;
