@@ -24,6 +24,7 @@ public class Production {
     @Column(name = "production_id")
     private Integer productionId;
     private String productionCompanyName;
+    private String productionCompanyNumber;
 
     @OneToMany(mappedBy = "production")
     private Set<Project> projects;
