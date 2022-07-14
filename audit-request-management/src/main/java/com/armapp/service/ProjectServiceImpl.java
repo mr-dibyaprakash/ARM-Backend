@@ -2,8 +2,10 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Project;
+import com.armapp.modelDTOs.ProjectVO;
 import com.armapp.repository.ProjectRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
  * @date - 08-07-2022
  * @project - Acheron-Training-AUDIT-REQUEST-MANAGEMENT-BACKEND
  */
+@Service
 public class ProjectServiceImpl implements IProjectService{
 
     private ProjectRepo projectRepo;
@@ -84,4 +87,12 @@ public class ProjectServiceImpl implements IProjectService{
                 .sorted(Comparator.comparing(Project::getProjectName))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Project> getAllProjectVos(String name) {
+        return projectRepo.findAllProjectVos(name + "%");
+
+
+    }
+
 }

@@ -11,5 +11,10 @@ public class ProductionVO {
 
     private Integer productionId;
     private String productionCompanyName;
+    private String contractNumber;
 
+    public ProductionVO(Integer productionId, String productionCompanyName) {
+        this.productionId = productionId;
+        this.productionCompanyName = productionCompanyName;
+    }
 }

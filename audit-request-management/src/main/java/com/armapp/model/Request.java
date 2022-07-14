@@ -22,11 +22,11 @@ public class Request {
 
     @Id
     private Integer requestId;
-//    @Enumerated(EnumType.STRING)
+    //    @Enumerated(EnumType.STRING)
     private String priority;
-//    @Enumerated(EnumType.STRING)
-    private String unionName;
-//    @Enumerated(EnumType.STRING)
+    //    @Enumerated(EnumType.STRING)
+    private String union;
+    //    @Enumerated(EnumType.STRING)
     private String status;
     private LocalDate requestCreatedDate;
     private LocalDate contractDate;

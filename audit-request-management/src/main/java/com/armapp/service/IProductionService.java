@@ -21,7 +21,7 @@ public interface IProductionService {
 
     List<Production> getAll();
 
-    List<ProductionVO> getByProductionCompanyNameLike(String companyName);
+    List<Production> getByProductionCompanyNameLike(String companyName);
 
 
 }

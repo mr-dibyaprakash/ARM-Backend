@@ -77,17 +77,12 @@ public class TalentServiceImpl implements ITalentService {
      */
     @Override
     public List<Talent> getAll() {
-        return talentRepo.findAll()
-                .stream()
-                .filter(talent -> !talent.isDeleted())
-                .sorted(Comparator.comparing(Talent::getTalentName))
-                .collect(Collectors.toList());
+        return talentRepo.findAll();
     }
 
 
     @Override
     public List<Talent> getByTalentNameLike(String keyword) {
-
         return talentRepo.findByTalentNameLike("%"+keyword+"%");
     }
 }

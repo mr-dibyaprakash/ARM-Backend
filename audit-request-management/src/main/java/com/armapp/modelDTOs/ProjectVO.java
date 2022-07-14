@@ -10,4 +10,5 @@ import lombok.*;
 public class ProjectVO {
 
     private String projectName;
+    private String contractNumber;
 }

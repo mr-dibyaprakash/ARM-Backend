@@ -90,24 +90,7 @@ public class ProductionServiceImpl implements IProductionService{
     }
 
     @Override
-    public List<ProductionVO> getByProductionCompanyNameLike(String companyName) {
-        return allProductionCompanies().stream()
-                .filter(production -> production.getProductionCompanyName().contains(companyName))
-                .collect(Collectors.toList());
-    }
-
-    private List<ProductionVO> allProductionCompanies(){
-        return Arrays.asList(
-                new ProductionVO(1,"Marvel Studios"),
-                new ProductionVO(2,"Columbia Pictures"),
-                new ProductionVO(3,"Legendary Entertainment"),
-                new ProductionVO(4,"Sony Pictures"),
-                new ProductionVO(5,"HBO Studios"),
-                new ProductionVO(6,"RKO Pictures"),
-                new ProductionVO(7,"TriStar Pictures"),
-                new ProductionVO(8,"Filmways"),
-                new ProductionVO(9,"PVR Pictures"),
-                new ProductionVO(10,"Fox Film")
-                );
+    public List<Production> getByProductionCompanyNameLike(String companyName) {
+        return productionRepo.findByProductionCompanyNameLike("%" + companyName + "%");
     }
 }

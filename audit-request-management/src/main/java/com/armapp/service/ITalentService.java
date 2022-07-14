@@ -25,5 +25,5 @@ public interface ITalentService {
     List<Talent> getAll();
 
 
-    public List<Talent> getByTalentNameLike(String keyword);
+    List<Talent> getByTalentNameLike(String keyword);
 }

@@ -3,58 +3,23 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://dozer.sourceforge.net
       http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <!--    ProductionCompanyName-->
     <mapping>
-        <class-a>com.armapp.model.Request</class-a>
-        <class-b>com.armapp.modelDTOs.RequestVO</class-b>
+        <class-a>com.armapp.model.Production</class-a>
+        <class-b>com.armapp.modelDTOs.ProductionVO</class-b>
         <field>
-            <a>requestId</a>
-            <b>requestId</b>
-        </field>
-        <field>
-            <a>priority</a>
-            <b>priority</b>
-        </field>
-        <field>
-            <a>union</a>
-            <b>union</b>
-        </field>
-        <field>
-            <a>status</a>
-            <b>status</b>
+            <a>contractNumber</a>
+            <b>contractNumber</b>
         </field>
         <field>
             <a>productionCompanyName</a>
             <b>productionCompanyName</b>
         </field>
-        <field>
-            <a>productionCompanyName.projects.projectName</a>
-            <b>projectName</b>
-        </field>
-        <field>
-            <a>productionCompanyName.projects.talents.talentName</a>
-            <b>talentName</b>
-        </field>
-        <field>
-            <a>requestSchedule</a>
-            <b>requestSchedule</b>
-        </field>
-<!--        <field>-->
-<!--            <a>tasks</a>-->
-<!--            <b>tasks</b>-->
-<!--        </field>-->
     </mapping>
-    <mapping>
-    <class-a>com.armapp.model.Production</class-a>
-    <class-b>com.armapp.modelDTOs.ProductionVO</class-b>
-    <field>
-        <a>productionId</a>
-        <b>productionId</b>
-    </field>
-    <field>
-        <a>productionCompanyName</a>
-        <b>productionCompanyName</b>
-    </field>
-    </mapping>
+    <!--    ProductionCompanyName-->
+
+    <!--    Project Name & Contract No-->
     <mapping>
         <class-a>com.armapp.model.Project</class-a>
         <class-b>com.armapp.modelDTOs.ProjectVO</class-b>
@@ -62,19 +27,14 @@
             <a>projectName</a>
             <b>projectName</b>
         </field>
-    </mapping>
-    <mapping>
-        <class-a>com.armapp.model.RequestSchedule</class-a>
-        <class-b>com.armapp.modelDTOs.RequestScheduleVO</class-b>
         <field>
-            <a>requestCreated</a>
-            <b>requestCreated</b>
-        </field>
-        <field>
-            <a>expectedClosure</a>
-            <b>expectedClosure</b>
+            <a>production.contractNumber</a>
+            <b>contractNumber</b>
         </field>
     </mapping>
+    <!--    Project Name & Contract No-->
+
+    <!--    Talents     -->
     <mapping>
         <class-a>com.armapp.model.Talent</class-a>
         <class-b>com.armapp.modelDTOs.TalentVO</class-b>
@@ -83,60 +43,5 @@
             <b>talentName</b>
         </field>
     </mapping>
-    <mapping>
-        <class-a>com.armapp.model.Request</class-a>
-        <class-b>com.armapp.modelDTOs.TaskVO</class-b>
-        <field>
-            <a>requestId</a>
-            <b>requestId</b>
-        </field>
-        <field>
-            <a>report.category.reportType</a>
-            <b>taskDescription</b>
-        </field>
-        <field>
-            <a>productionCompanyName</a>
-            <b>productionCompanyName</b>
-        </field>
-        <field>
-            <a>productionCompanyName.projects.projectName</a>
-            <b>projectName</b>
-        </field>
-        <field>
-            <a>productionCompanyName.projects.talents.talentName</a>
-            <b>talentName</b>
-        </field>
-        <field>
-            <a>priority</a>
-            <b>priority</b>
-        </field>
-        <field>
-            <a>report</a>
-            <b>auditPeriod</b>
-        </field>
-        <field>
-            <a>requestSchedule</a>
-            <b>dates</b>
-        </field>
-    </mapping>
-    <mapping>
-        <class-a>com.armapp.model.Category</class-a>
-        <class-b>com.armapp.modelDTOs.CategoryVO</class-b>
-        <field>
-            <a>reportType</a>
-            <b>reportType</b>
-        </field>
-    </mapping>
-    <mapping>
-        <class-a>com.armapp.model.Report</class-a>
-        <class-b>com.armapp.modelDTOs.ReportVO</class-b>
-        <field>
-            <a>audit_start_date</a>
-            <b>audit_start_date</b>
-        </field>
-        <field>
-            <a>audit_end_date</a>
-            <b>audit_end_date</b>
-        </field>
-    </mapping>
+    <!--    Talents    -->
 </mappings>

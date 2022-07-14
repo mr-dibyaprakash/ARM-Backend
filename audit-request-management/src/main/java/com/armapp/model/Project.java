@@ -23,7 +23,6 @@ public class Project {
     @Id
     private Integer projectId;
     private String projectName;
-    private String projectNumber;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "production_id")

@@ -16,5 +16,5 @@ import java.util.List;
 public interface ProductionRepo extends JpaRepository<Production, Integer> {
 
     // get the list of production companyNames according to the input parameters
-    List<ProductionVO> findByProductionCompanyNameLike(String companyName);
+    List<Production> findByProductionCompanyNameLike(String companyName);
 }

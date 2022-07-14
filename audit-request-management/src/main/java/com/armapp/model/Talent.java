@@ -25,8 +25,8 @@ public class Talent {
     private Integer talentId;
     private String talentName;
 
-//    @ManyToMany(mappedBy = "talents")
-//    private Set<Project> projects;
+    @ManyToMany(mappedBy = "talents")
+    private Set<Project> projects;
 
     private String createdBy;
     private LocalDateTime createdAt;

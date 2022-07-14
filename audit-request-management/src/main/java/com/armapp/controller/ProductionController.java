@@ -2,20 +2,16 @@ package com.armapp.controller;
 
 
 
+import com.armapp.model.Production;
 import com.armapp.modelDTOs.ProductionVO;
 import com.armapp.service.IProductionService;
-import org.keycloak.KeycloakPrincipal;
-import org.keycloak.KeycloakSecurityContext;
-import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
-import org.keycloak.representations.IDToken;
+import org.dozer.DozerBeanMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
-import java.security.Principal;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
@@ -29,14 +25,23 @@ public class ProductionController {
     }
 
     @GetMapping("/choice/{companyName}")
-    @RolesAllowed({"user","admin"})
-    ResponseEntity<List<ProductionVO>> getByProductionCompanyNameLike(@PathVariable("companyName") String companyName)  {
+    @RolesAllowed({"user", "admin"})
+    ResponseEntity<List<ProductionVO>> getByProductionCompanyNameLike(@PathVariable("companyName") String companyName) {
 
-        List<ProductionVO> names = iProductionService.getByProductionCompanyNameLike(companyName);
+        List<Production> names = iProductionService.getByProductionCompanyNameLike(companyName);
+        List<ProductionVO> productionVOList = new ArrayList<ProductionVO>();
+        DozerBeanMapper mapper = new DozerBeanMapper();
+        List<String> myMappingFiles = new ArrayList<>();
+        myMappingFiles.add("dozerBeanMapping.xml");
+        mapper.setMappingFiles(myMappingFiles);
+        for (Production production : names) {
+            ProductionVO productionVO = mapper.map(production, ProductionVO.class);
+            productionVOList.add(productionVO);
+        }
         return ResponseEntity.status(HttpStatus.OK)
                 .headers(httpHeaders -> httpHeaders
                         .add("desc", "get production company names like"))
-                .body(names);
+                .body(productionVOList);
     }
 
 

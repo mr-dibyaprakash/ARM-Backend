@@ -24,9 +24,11 @@ public class Production {
     @Column(name = "production_id")
     private Integer productionId;
     private String productionCompanyName;
-    private String productionCompanyNumber;
+    private String contractNumber;
 
-    @OneToMany(mappedBy = "production")
+    @OneToMany()
+    @JoinColumn(name = "production")
+    @ToString.Exclude
     private Set<Project> projects;
 
     private String createdBy;

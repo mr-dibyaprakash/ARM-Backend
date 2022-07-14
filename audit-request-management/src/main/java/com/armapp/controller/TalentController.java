@@ -25,15 +25,6 @@ import java.util.List;
 @RequestMapping("/api")
 public class TalentController {
 
-
-//    @Autowired
-//    public void setMapper(DozerBeanMapper mapper) {
-//        this.mapper = mapper;
-//    }
-
-
-
-
     private ITalentService iTalentService;
 
     @Autowired
@@ -41,7 +32,8 @@ public class TalentController {
         this.iTalentService = iTalentService;
     }
 
-    @GetMapping("talents/{keyword}")
+
+    @GetMapping("/talents/{keyword}")
     public ResponseEntity<List<TalentVO>> search(@PathVariable("keyword") String keyword) throws NullPointerException {
         List<Talent> talents = iTalentService.getByTalentNameLike(keyword);
 
@@ -56,10 +48,30 @@ public class TalentController {
         TalentVO talentsVO;
         for (Talent talent : talents) {
             talentsVO = mapper.map(talent, TalentVO.class);
-                talentsVOList.add(talentsVO);
+            talentsVOList.add(talentsVO);
         }
         return new ResponseEntity<List<TalentVO>>(talentsVOList, httpHeaders, HttpStatus.OK);
     }
 
+
+    @GetMapping("/talents")
+    public ResponseEntity<List<TalentVO>> search() throws NullPointerException {
+        List<Talent> talents = iTalentService.getAll();
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+
+        httpHeaders.add("desc", "Getting Talents by Name");
+        List<TalentVO> talentsVOList = new ArrayList<TalentVO>();
+        DozerBeanMapper mapper = new DozerBeanMapper();
+        List<String> myMappingFiles = new ArrayList<String>();
+        myMappingFiles.add("dozerBeanMapping.xml");
+        mapper.setMappingFiles(myMappingFiles);
+        TalentVO talentsVO;
+        for (Talent talent : talents) {
+            talentsVO = mapper.map(talent, TalentVO.class);
+            talentsVOList.add(talentsVO);
+        }
+        return new ResponseEntity<List<TalentVO>>(talentsVOList, httpHeaders, HttpStatus.OK);
+    }
 
 }
