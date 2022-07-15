@@ -1,5 +1,6 @@
 package com.armapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,30 +8,26 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
- * @author - Akash Kanaparthi
- * @date - 05-07-2022
- * @project - Acheron-Training-AUDIT-REQUEST-MANAGEMENT-BACKEND
+ * @author DibyaPrakashOjha
  */
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Talent {
-
+public class Owner {
     @Id
-    @Column(name = "talent_id")
-    private Integer talentId;
-    private String talentName;
-
-    @ManyToMany(mappedBy = "talents")
-    private Set<Project> projects;
-
+    private Integer ownerId;
+    private String ownerName;
+    private String ownerUserId;
+    @OneToMany(mappedBy="owner", cascade={CascadeType.ALL})
+    @JsonIgnore
+    private Set<Category> category;
     private String createdBy;
     private LocalDateTime createdAt;
     private String updatedBy;
     private LocalDateTime updatedAt;
     private boolean isDeleted;
-
 }

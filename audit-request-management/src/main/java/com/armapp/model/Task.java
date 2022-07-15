@@ -2,11 +2,7 @@ package com.armapp.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.time.LocalDate;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -25,11 +21,20 @@ public class Task {
     @Id
     @Column(name="task_id")
     private Integer taskId;
-    private int requestId;
+
+    @ManyToOne
+    @JoinColumn(name = "request_id")
+    private Request request;
+
+    // Task list page task.category.owner.ownerUserId = logged user id
+    @OneToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     private String createdBy;
     private LocalDateTime createdAt;
     private String updatedBy;
     private LocalDateTime updatedAt;
     private boolean isDeleted;
+    private LocalDateTime closedAt;
 }

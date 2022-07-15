@@ -16,11 +16,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class TalentController {
@@ -37,41 +37,39 @@ public class TalentController {
     public ResponseEntity<List<TalentVO>> search(@PathVariable("keyword") String keyword) throws NullPointerException {
         List<Talent> talents = iTalentService.getByTalentNameLike(keyword);
 
-        HttpHeaders httpHeaders = new HttpHeaders();
 
-        httpHeaders.add("desc", "Getting Talents by Name");
         List<TalentVO> talentsVOList = new ArrayList<TalentVO>();
         DozerBeanMapper mapper = new DozerBeanMapper();
         List<String> myMappingFiles = new ArrayList<String>();
         myMappingFiles.add("dozerBeanMapping.xml");
         mapper.setMappingFiles(myMappingFiles);
-        TalentVO talentsVO;
         for (Talent talent : talents) {
-            talentsVO = mapper.map(talent, TalentVO.class);
+            TalentVO talentsVO = mapper.map(talent, TalentVO.class);
             talentsVOList.add(talentsVO);
         }
-        return new ResponseEntity<List<TalentVO>>(talentsVOList, httpHeaders, HttpStatus.OK);
+        return ResponseEntity.ok().headers(httpHeaders -> httpHeaders
+                            .add("desc", "Getting Talents by Name"))
+                    .body(talentsVOList);
     }
 
 
     @GetMapping("/talents")
+    @RolesAllowed("manager")
     public ResponseEntity<List<TalentVO>> search() throws NullPointerException {
         List<Talent> talents = iTalentService.getAll();
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-
-        httpHeaders.add("desc", "Getting Talents by Name");
         List<TalentVO> talentsVOList = new ArrayList<TalentVO>();
         DozerBeanMapper mapper = new DozerBeanMapper();
         List<String> myMappingFiles = new ArrayList<String>();
         myMappingFiles.add("dozerBeanMapping.xml");
         mapper.setMappingFiles(myMappingFiles);
-        TalentVO talentsVO;
         for (Talent talent : talents) {
-            talentsVO = mapper.map(talent, TalentVO.class);
+            TalentVO talentsVO = mapper.map(talent, TalentVO.class);
             talentsVOList.add(talentsVO);
         }
-        return new ResponseEntity<List<TalentVO>>(talentsVOList, httpHeaders, HttpStatus.OK);
+        return ResponseEntity.ok().headers(httpHeaders -> httpHeaders
+                        .add("desc", "Getting All Talents"))
+                .body(talentsVOList);
     }
 
 }

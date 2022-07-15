@@ -2,14 +2,14 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Request;
-import com.armapp.repository.RequestRepo;
+import com.armapp.model.RequestSchedule;
+import com.armapp.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
 @Service
 public class RequestServiceImpl implements IRequestService{
 
-    private RequestRepo requestRepo;
+    private RequestRepository requestRepository;
     @Autowired
-    public void setRequestRepo(RequestRepo requestRepo) {
-        this.requestRepo = requestRepo;
+    public void setRequestRepo(RequestRepository requestRepository) {
+        this.requestRepository = requestRepository;
     }
 
     /**
@@ -35,7 +35,10 @@ public class RequestServiceImpl implements IRequestService{
     @Override
     public void addRequest(Request request) {
         request.setCreatedAt(LocalDateTime.now());
-        requestRepo.save(request);
+        RequestSchedule requestSchedule = request.getRequestSchedule();
+        requestSchedule.setCreatedAt(LocalDateTime.now());
+        request.setRequestSchedule(requestSchedule);
+        requestRepository.save(request);
     }
 
     /**
@@ -45,9 +48,9 @@ public class RequestServiceImpl implements IRequestService{
      */
     @Override
     public void updateRequest(Request request) {
-        Request request1 = requestRepo.findById(request.getRequestId()).get();
+        Request request1 = requestRepository.findById(request.getRequestId()).get();
         request1.setUpdatedAt(LocalDateTime.now());
-        requestRepo.save(request1);
+        requestRepository.save(request1);
     }
 
     /**
@@ -58,9 +61,9 @@ public class RequestServiceImpl implements IRequestService{
      */
     @Override
     public void deleteRequest(int requestId) throws InvalidIdException{
-        Request request = requestRepo.findById(requestId).get();
+        Request request = requestRepository.findById(requestId).get();
         request.setDeleted(true);
-        requestRepo.save(request);
+        requestRepository.save(request);
     }
 
     /**
@@ -72,7 +75,7 @@ public class RequestServiceImpl implements IRequestService{
      */
     @Override
     public Request getById(int requestId) throws InvalidIdException {
-        return requestRepo.findById(requestId).get();
+        return requestRepository.findById(requestId).get();
 
     }
 
@@ -82,10 +85,15 @@ public class RequestServiceImpl implements IRequestService{
      */
     @Override
     public List<Request> getAll() {
-        return requestRepo.findAll()
+        return requestRepository.findAll()
                 .stream()
                 .filter(request -> !request.isDeleted())
                 .sorted(Comparator.comparing(Request::getRequestId))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Request save(Request request) {
+        return requestRepository.save(request);
     }
 }

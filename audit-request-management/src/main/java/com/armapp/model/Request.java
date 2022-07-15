@@ -19,31 +19,31 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 public class Request {
-
     @Id
     private Integer requestId;
     //    @Enumerated(EnumType.STRING)
     private String priority;
     //    @Enumerated(EnumType.STRING)
-    private String union;
+    private String unionName;
     //    @Enumerated(EnumType.STRING)
     private String status;
+    // TODO these should be associations not string values
+    // Do this in future
+    private String productionName;
+    private String projectName;
+    private String talentName;
+    private String productionNumber;
     private LocalDate requestCreatedDate;
     private LocalDate contractDate;
     private LocalDate auditStartDate;
     private LocalDate auditEndDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "production_id")
-    private Production production;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "request_schedule_id")
+    @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
     private RequestSchedule requestSchedule;
 
-    @ManyToMany(mappedBy = "request",cascade = CascadeType.ALL)
-    private Set<Category> category;
-
+    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
+    private Set<Task> tasksList;
+    // your list page should be based on this col value
     private String createdBy;
     private LocalDateTime createdAt;
     private String updatedBy;

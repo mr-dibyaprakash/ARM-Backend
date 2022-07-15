@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  * @project - AUDIT-REQUEST-MANAGEMENT_BE
  */
 @RestController
-@RequestMapping("request-api")
+@RequestMapping("/api")
 public class RequestController {
 
     private IRequestService requestService;
@@ -31,6 +32,7 @@ public class RequestController {
      * @return
      */
     @PostMapping("/requests")
+
     ResponseEntity<String> createRequest(@RequestBody Request request){
         requestService.addRequest(request);
         return ResponseEntity.status(HttpStatus.OK).body("Created Request");
@@ -41,6 +43,7 @@ public class RequestController {
      * @return
      */
     @GetMapping("/requests")
+    @RolesAllowed("report_owner")
     ResponseEntity<List<Request>> getAllRequests(){
         return ResponseEntity.ok(requestService.getAll());
     }

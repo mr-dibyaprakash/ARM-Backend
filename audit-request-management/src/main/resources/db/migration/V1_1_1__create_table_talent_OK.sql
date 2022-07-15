@@ -1,7 +1,5 @@
-
-
 CREATE TABLE  IF NOT EXISTS `talent`(
-talent_id integer  NOT NULL   ,
+talent_id integer  NOT NULL,
 talent_name varchar(45) NOT NULL,
 created_by varchar(100) NOT NULL,
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

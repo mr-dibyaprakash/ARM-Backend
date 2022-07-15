@@ -2,8 +2,7 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Project;
-import com.armapp.modelDTOs.ProjectVO;
-import com.armapp.repository.ProjectRepo;
+import com.armapp.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +20,10 @@ import java.util.stream.Collectors;
 @Service
 public class ProjectServiceImpl implements IProjectService{
 
-    private ProjectRepo projectRepo;
+    private ProjectRepository projectRepository;
     @Autowired
-    public void setProjectRepo(ProjectRepo projectRepo) {
-        this.projectRepo = projectRepo;
+    public void setProjectRepo(ProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
     }
 
     /**
@@ -34,7 +33,7 @@ public class ProjectServiceImpl implements IProjectService{
      */
     @Override
     public void addProject(Set<Project> projects) {
-        projectRepo.saveAll(projects);
+        projectRepository.saveAll(projects);
     }
 
     /**
@@ -44,9 +43,9 @@ public class ProjectServiceImpl implements IProjectService{
      */
     @Override
     public void updateProject(Project project) {
-        Project project1 = projectRepo.findById(project.getProjectId()).get();
+        Project project1 = projectRepository.findById(project.getProjectId()).get();
         project1.setUpdatedAt(LocalDateTime.now());
-        projectRepo.save(project1);
+        projectRepository.save(project1);
     }
 
     /**
@@ -57,9 +56,9 @@ public class ProjectServiceImpl implements IProjectService{
      */
     @Override
     public void deleteProject(int projectId) throws InvalidIdException {
-        Project project = projectRepo.findById(projectId).get();
+        Project project = projectRepository.findById(projectId).get();
         project.setDeleted(true);
-        projectRepo.save(project);
+        projectRepository.save(project);
     }
 
     /**
@@ -71,7 +70,7 @@ public class ProjectServiceImpl implements IProjectService{
      */
     @Override
     public Project getById(int projectId) throws InvalidIdException{
-        return  projectRepo.findById(projectId).get();
+        return  projectRepository.findById(projectId).get();
     }
 
     /**
@@ -80,7 +79,7 @@ public class ProjectServiceImpl implements IProjectService{
      */
     @Override
     public List<Project> getAll() {
-        return projectRepo
+        return projectRepository
                 .findAll()
                 .stream()
                 .filter(project -> !project.isDeleted())
@@ -90,7 +89,7 @@ public class ProjectServiceImpl implements IProjectService{
 
     @Override
     public List<Project> getAllProjectVos(String name) {
-        return projectRepo.findAllProjectVos(name + "%");
+        return projectRepository.findAllProjectVos(name + "%");
 
 
     }

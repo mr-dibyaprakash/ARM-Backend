@@ -24,8 +24,8 @@ public class ProductionController {
         this.iProductionService = iProductionService;
     }
 
-    @GetMapping("/choice/{companyName}")
-    @RolesAllowed({"user", "admin"})
+    @GetMapping("/productions/{companyName}")
+    @RolesAllowed("manager")
     ResponseEntity<List<ProductionVO>> getByProductionCompanyNameLike(@PathVariable("companyName") String companyName) {
 
         List<Production> names = iProductionService.getByProductionCompanyNameLike(companyName);
@@ -45,4 +45,23 @@ public class ProductionController {
     }
 
 
+    @GetMapping("/productions")
+    @RolesAllowed("manager")
+    ResponseEntity<List<ProductionVO>> getAllProductionCompany() {
+
+        List<Production> names = iProductionService.getAll();
+        List<ProductionVO> productionVOList = new ArrayList<ProductionVO>();
+        DozerBeanMapper mapper = new DozerBeanMapper();
+        List<String> myMappingFiles = new ArrayList<>();
+        myMappingFiles.add("dozerBeanMapping.xml");
+        mapper.setMappingFiles(myMappingFiles);
+        for (Production production : names) {
+            ProductionVO productionVO = mapper.map(production, ProductionVO.class);
+            productionVOList.add(productionVO);
+        }
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(httpHeaders -> httpHeaders
+                        .add("desc", "get all production company"))
+                .body(productionVOList);
+    }
 }

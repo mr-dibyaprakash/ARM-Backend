@@ -1,11 +1,8 @@
 package com.armapp.repository;
 
-import com.armapp.model.Talent;
-import com.armapp.modelDTOs.TalentVO;
+import com.armapp.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * @author Dibya Prakash Ojha
@@ -13,7 +10,5 @@ import java.util.List;
  * @project : audit-request-management
  */
 @Repository
-public interface TalentRepo extends JpaRepository<Talent, Integer> {
-
-    public List<Talent> findByTalentNameLike(String keyword);
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }

@@ -2,7 +2,6 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Talent;
-import com.armapp.modelDTOs.TalentVO;
 
 import java.util.List;
 import java.util.Set;

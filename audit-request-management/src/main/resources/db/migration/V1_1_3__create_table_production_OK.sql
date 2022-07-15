@@ -1,4 +1,3 @@
-
 create TABLE  IF NOT EXISTS `production`(
 production_id integer  NOT NULL AUTO_INCREMENT,
 production_company_name varchar(255) NOT NULL,

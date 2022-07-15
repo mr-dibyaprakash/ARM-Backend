@@ -1,11 +1,9 @@
 package com.armapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * @author - Akash Kanaparthi
@@ -22,16 +20,10 @@ public class Category {
     @Id
     private Integer categoryId;
     private String reportType;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "request_category",
-            joinColumns = {@JoinColumn(name = "request_id")},
-            inverseJoinColumns = {@JoinColumn(name ="category_id")}
-    )
-    @JsonIgnore
-    private List<Request> request;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reporter_id")
-    private Reporter reporter;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
 
     private String createdBy;
     private LocalDateTime createdAt;

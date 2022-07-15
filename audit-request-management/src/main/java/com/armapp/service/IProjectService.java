@@ -2,7 +2,6 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Project;
-import com.armapp.modelDTOs.ProjectVO;
 
 import java.util.List;
 import java.util.Set;

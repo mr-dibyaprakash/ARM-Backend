@@ -2,11 +2,8 @@ package com.armapp.modelDTOs;
 
 import com.armapp.model.Priority;
 import com.armapp.model.Status;
-import com.armapp.model.Task;
 import com.armapp.model.Union;
 import lombok.*;
-
-import java.util.Set;
 
 /**
  * @author - Akash

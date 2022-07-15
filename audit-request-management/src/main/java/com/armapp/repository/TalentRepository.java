@@ -1,8 +1,10 @@
 package com.armapp.repository;
 
-import com.armapp.model.Request;
+import com.armapp.model.Talent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author Dibya Prakash Ojha
@@ -10,5 +12,7 @@ import org.springframework.stereotype.Repository;
  * @project : audit-request-management
  */
 @Repository
-public interface RequestRepo extends JpaRepository<Request, Integer> {
+public interface TalentRepository extends JpaRepository<Talent, Integer> {
+
+    public List<Talent> findByTalentNameLike(String keyword);
 }

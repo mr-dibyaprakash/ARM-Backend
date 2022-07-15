@@ -4,7 +4,6 @@ import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Request;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author - Akash Kanaparthi
@@ -19,5 +18,8 @@ public interface IRequestService {
     Request getById(int requestId) throws InvalidIdException;
 
     List<Request> getAll();
+
+
+    Request save(Request request);
 
 }

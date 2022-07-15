@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @ToString
 public class RequestSchedule {
     @Id
-    @Column(name = "request_schedule_id")
     private Integer requestScheduleId;
     private LocalDate requestCreated;
     private LocalDate expectedClosure;
@@ -33,4 +32,7 @@ public class RequestSchedule {
     private String updatedBy;
     private LocalDateTime updatedAt;
     private boolean isDeleted;
+    @OneToOne
+    @JoinColumn(name = "request_id")
+    private Request request;
 }

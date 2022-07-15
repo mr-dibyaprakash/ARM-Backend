@@ -2,13 +2,11 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Production;
-import com.armapp.modelDTOs.ProductionVO;
-import com.armapp.repository.ProductionRepo;
+import com.armapp.repository.ProductionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -22,10 +20,10 @@ import java.util.stream.Collectors;
 @Service
 public class ProductionServiceImpl implements IProductionService{
 
-    private ProductionRepo productionRepo;
+    private ProductionRepository productionRepository;
     @Autowired
-    public void setProductionRepo(ProductionRepo productionRepo) {
-        this.productionRepo = productionRepo;
+    public void setProductionRepo(ProductionRepository productionRepository) {
+        this.productionRepository = productionRepository;
     }
 
     /**
@@ -35,7 +33,7 @@ public class ProductionServiceImpl implements IProductionService{
      */
     @Override
     public void addProduction(Set<Production> productions) {
-        productionRepo.saveAll(productions);
+        productionRepository.saveAll(productions);
     }
 
     /**
@@ -45,9 +43,9 @@ public class ProductionServiceImpl implements IProductionService{
      */
     @Override
     public void updateProduction(Production production) {
-        Production production1 = productionRepo.findById(production.getProductionId()).get();
+        Production production1 = productionRepository.findById(production.getProductionId()).get();
         production1.setUpdatedAt(LocalDateTime.now());
-        productionRepo.save(production1);
+        productionRepository.save(production1);
     }
 
     /**
@@ -58,9 +56,9 @@ public class ProductionServiceImpl implements IProductionService{
      */
     @Override
     public void deleteProduction(int productionId) throws InvalidIdException {
-        Production production = productionRepo.findById(productionId).get();
+        Production production = productionRepository.findById(productionId).get();
         production.setDeleted(true);
-        productionRepo.save(production);
+        productionRepository.save(production);
     }
 
     /**
@@ -72,7 +70,7 @@ public class ProductionServiceImpl implements IProductionService{
      */
     @Override
     public Production getById(int productionId) throws InvalidIdException{
-        return productionRepo.findById(productionId).get();
+        return productionRepository.findById(productionId).get();
     }
 
     /**
@@ -82,7 +80,7 @@ public class ProductionServiceImpl implements IProductionService{
      */
     @Override
     public List<Production> getAll() {
-        return productionRepo.findAll()
+        return productionRepository.findAll()
                 .stream()
                 .filter(production -> !production.isDeleted())
                 .sorted(Comparator.comparing(Production::getProductionCompanyName))
@@ -91,6 +89,6 @@ public class ProductionServiceImpl implements IProductionService{
 
     @Override
     public List<Production> getByProductionCompanyNameLike(String companyName) {
-        return productionRepo.findByProductionCompanyNameLike("%" + companyName + "%");
+        return productionRepository.findByProductionCompanyNameLike("%" + companyName + "%");
     }
 }

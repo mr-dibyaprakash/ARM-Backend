@@ -2,7 +2,7 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Category;
-import com.armapp.repository.CategoryRepo;
+import com.armapp.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryServiceImpl implements ICategoryService{
 
-    private CategoryRepo categoryRepo;
+    private CategoryRepository categoryRepository;
     @Autowired
-    public void setCategoryRepo(CategoryRepo categoryRepo) {
-        this.categoryRepo = categoryRepo;
+    public void setCategoryRepo(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
     /**
      * adding the categories to the database
@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements ICategoryService{
      */
     @Override
     public void addCategory(Set<Category> category) {
-        categoryRepo.saveAll(category);
+        categoryRepository.saveAll(category);
     }
     /**
      * updating the category by taking complete category class
@@ -43,9 +43,9 @@ public class CategoryServiceImpl implements ICategoryService{
      */
     @Override
     public void updateCategory(Category category) {
-        Category category1 = categoryRepo.findById(category.getCategoryId()).get();
+        Category category1 = categoryRepository.findById(category.getCategoryId()).get();
         category1.setUpdatedAt(LocalDateTime.now(Clock.systemDefaultZone()));
-        categoryRepo.save(category1);
+        categoryRepository.save(category1);
     }
     /**
      * this method used to delete the category by
@@ -55,12 +55,12 @@ public class CategoryServiceImpl implements ICategoryService{
      */
     @Override
     public void deleteCategory(int categoryId) throws InvalidIdException {
-        Category category = categoryRepo.findById(categoryId).get();
+        Category category = categoryRepository.findById(categoryId).get();
         if (category == null){
             throw new InvalidIdException("Id Not Found");
         }
         category.setDeleted(true);
-        categoryRepo.save(category);
+        categoryRepository.save(category);
     }
     /**
      *this method use to get one category object data
@@ -70,7 +70,7 @@ public class CategoryServiceImpl implements ICategoryService{
      */
     @Override
     public Category getById(int categoryId) throws InvalidIdException{
-        Category category = categoryRepo.findById(categoryId).get();
+        Category category = categoryRepository.findById(categoryId).get();
         if (category == null){
             throw new InvalidIdException("Id Not Found");
         }
@@ -83,7 +83,7 @@ public class CategoryServiceImpl implements ICategoryService{
      */
     @Override
     public List<Category> getAll() {
-        return categoryRepo
+        return categoryRepository
                 .findAll()
                 .stream()
                 .filter(category -> !category.isDeleted())

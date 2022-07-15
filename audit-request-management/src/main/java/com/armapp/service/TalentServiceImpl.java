@@ -2,15 +2,13 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Talent;
-import com.armapp.repository.TalentRepo;
+import com.armapp.repository.TalentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author - Akash Kanaparthi
@@ -21,11 +19,11 @@ import java.util.stream.Collectors;
 @Service
 public class TalentServiceImpl implements ITalentService {
 
-    private TalentRepo talentRepo;
+    private TalentRepository talentRepository;
 
     @Autowired
-    public void setTalentRepo(TalentRepo talentRepo) {
-        this.talentRepo = talentRepo;
+    public void setTalentRepo(TalentRepository talentRepository) {
+        this.talentRepository = talentRepository;
     }
 
     /**
@@ -34,7 +32,7 @@ public class TalentServiceImpl implements ITalentService {
      */
     @Override
     public void addTalent(Set<Talent> talents) {
-        talentRepo.saveAll(talents);
+        talentRepository.saveAll(talents);
     }
 
     /**
@@ -43,9 +41,9 @@ public class TalentServiceImpl implements ITalentService {
      */
     @Override
     public void updateTalent(Talent talent) {
-        Talent talent1 = talentRepo.findById(talent.getTalentId()).get();
+        Talent talent1 = talentRepository.findById(talent.getTalentId()).get();
         talent1.setUpdatedAt(LocalDateTime.now());
-        talentRepo.save(talent1);
+        talentRepository.save(talent1);
     }
 
     /**
@@ -55,9 +53,9 @@ public class TalentServiceImpl implements ITalentService {
      */
     @Override
     public void deleteTalent(int talentId) throws InvalidIdException {
-        Talent talent = talentRepo.findById(talentId).get();
+        Talent talent = talentRepository.findById(talentId).get();
         talent.setDeleted(true);
-        talentRepo.save(talent);
+        talentRepository.save(talent);
     }
 
     /**
@@ -68,7 +66,7 @@ public class TalentServiceImpl implements ITalentService {
      */
     @Override
     public Talent getById(int talentId) throws InvalidIdException {
-        return talentRepo.findById(talentId).get();
+        return talentRepository.findById(talentId).get();
     }
 
     /**
@@ -77,12 +75,12 @@ public class TalentServiceImpl implements ITalentService {
      */
     @Override
     public List<Talent> getAll() {
-        return talentRepo.findAll();
+        return talentRepository.findAll();
     }
 
 
     @Override
     public List<Talent> getByTalentNameLike(String keyword) {
-        return talentRepo.findByTalentNameLike("%"+keyword+"%");
+        return talentRepository.findByTalentNameLike("%"+keyword+"%");
     }
 }

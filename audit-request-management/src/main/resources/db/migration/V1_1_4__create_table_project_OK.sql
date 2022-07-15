@@ -1,6 +1,3 @@
-
-
-
 CREATE TABLE  IF NOT EXISTS `project`(
 project_id integer NOT NULL AUTO_INCREMENT ,
 project_name varchar(255) NOT NULL ,

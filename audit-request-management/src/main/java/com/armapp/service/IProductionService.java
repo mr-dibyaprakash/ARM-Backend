@@ -2,7 +2,6 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Production;
-import com.armapp.modelDTOs.ProductionVO;
 
 import java.util.List;
 import java.util.Set;

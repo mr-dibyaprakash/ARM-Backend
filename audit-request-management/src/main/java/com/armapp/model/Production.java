@@ -3,7 +3,6 @@ package com.armapp.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -26,8 +25,7 @@ public class Production {
     private String productionCompanyName;
     private String contractNumber;
 
-    @OneToMany()
-    @JoinColumn(name = "production")
+    @OneToMany(mappedBy="production", cascade={CascadeType.ALL})
     @ToString.Exclude
     private Set<Project> projects;
 
