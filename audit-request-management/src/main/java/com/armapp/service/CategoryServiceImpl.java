@@ -32,8 +32,8 @@ public class CategoryServiceImpl implements ICategoryService{
      * @param category
      */
     @Override
-    public void addCategory(Set<Category> category) {
-        categoryRepository.saveAll(category);
+    public void addCategory(Category category) {
+        categoryRepository.save(category);
     }
     /**
      * updating the category by taking complete category class
@@ -44,6 +44,7 @@ public class CategoryServiceImpl implements ICategoryService{
     @Override
     public void updateCategory(Category category) {
         Category category1 = categoryRepository.findById(category.getCategoryId()).get();
+        category1.setUpdatedBy(System.getProperty("user.name"));
         category1.setUpdatedAt(LocalDateTime.now(Clock.systemDefaultZone()));
         categoryRepository.save(category1);
     }
