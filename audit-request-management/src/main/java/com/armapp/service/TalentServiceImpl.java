@@ -1,14 +1,17 @@
 package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
+import com.armapp.model.Project;
 import com.armapp.model.Talent;
 import com.armapp.repository.TalentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author - Akash Kanaparthi
@@ -75,12 +78,20 @@ public class TalentServiceImpl implements ITalentService {
      */
     @Override
     public List<Talent> getAll() {
-        return talentRepository.findAll();
+        return talentRepository.findAll()
+                .stream()
+                .filter(project -> !project.isDeleted())
+                .sorted(Comparator.comparing(Talent::getTalentName))
+                .collect(Collectors.toList());
     }
 
 
     @Override
     public List<Talent> getByTalentNameLike(String keyword) {
-        return talentRepository.findByTalentNameLike("%"+keyword+"%");
+        return talentRepository.findByTalentNameLike("%"+keyword+"%")
+                .stream()
+                .filter(project -> !project.isDeleted())
+                .sorted(Comparator.comparing(Talent::getTalentName))
+                .collect(Collectors.toList());
     }
 }
