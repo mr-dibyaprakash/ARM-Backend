@@ -1,4 +1,4 @@
-package com.armapp.modelDTOs;
+package com.armapp.vo;
 
 import com.armapp.model.Category;
 import com.armapp.model.Priority;
