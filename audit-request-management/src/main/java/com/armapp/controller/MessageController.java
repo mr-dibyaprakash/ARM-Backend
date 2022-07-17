@@ -31,6 +31,7 @@ public class MessageController {
 
 
     @GetMapping("/messages/{taskId}")
+        // http://localhost:9090/messages/1
     ResponseEntity<List<MessageVO>> messagesByTaskId(@PathVariable("taskId") String taskId) {
         List<Message> messages = iMessageService.findAllByTaskId(Integer.valueOf(taskId));
         List<MessageVO> messagesList = new ArrayList<>();
@@ -55,6 +56,7 @@ public class MessageController {
 
 
     @GetMapping("/messages")
+        // Not in use
     ResponseEntity<List<MessageVO>> messages() {
         List<Message> savedMsgs = iMessageService.findAll();
         //TODO As of now just return one
@@ -78,6 +80,11 @@ public class MessageController {
     }
 
     @PostMapping("/create/message")
+    //http://localhost:9090/create/message
+    //    {"taskId": "1",
+    //            "from": "11",
+    //            "to":"10",
+    //            "messageText":"Sample message"}
     public ResponseEntity<MessageVO> createMessage(@RequestBody MessageVO messageVO) {
         Owner from = ownerRepository.findById(Integer.valueOf(messageVO.getFrom())).get();
         Owner to = ownerRepository.findById(Integer.valueOf(messageVO.getTo())).get();
