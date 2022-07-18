@@ -7,8 +7,8 @@
 package com.armapp.controller;
 
 import com.armapp.model.Talent;
-import com.armapp.vo.TalentVO;
 import com.armapp.service.ITalentService;
+import com.armapp.vo.TalentVO;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

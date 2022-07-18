@@ -1,5 +1,6 @@
 package com.armapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 @ToString
 public class RequestSchedule {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer requestScheduleId;
     private LocalDate requestCreated;
     private LocalDate expectedClosure;
@@ -34,5 +36,7 @@ public class RequestSchedule {
     private boolean isDeleted;
     @OneToOne
     @JoinColumn(name = "request_id")
+    @ToString.Exclude
+    @JsonIgnore
     private Request request;
 }

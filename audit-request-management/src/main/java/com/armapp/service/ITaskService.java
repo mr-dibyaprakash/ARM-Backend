@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface ITaskService {
     public List<Task> findAll();
+
+    public List<Task> findAllTasksAssignedTo(String userId);
 }

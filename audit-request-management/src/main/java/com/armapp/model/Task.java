@@ -1,5 +1,6 @@
 package com.armapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,10 +21,12 @@ public class Task {
 
     @Id
     @Column(name="task_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer taskId;
 
     @ManyToOne
     @JoinColumn(name = "request_id")
+    @JsonIgnore
     private Request request;
 
     // Task list page task.category.owner.ownerUserId = logged user id

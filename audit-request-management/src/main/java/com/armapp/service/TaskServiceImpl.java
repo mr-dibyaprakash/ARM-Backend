@@ -28,4 +28,9 @@ public class TaskServiceImpl implements ITaskService {
                 .sorted(Comparator.comparing(Task::getTaskId))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Task> findAllTasksAssignedTo(String userId) {
+        return taskRepository.findByAssignedUserId(userId);
+    }
 }
