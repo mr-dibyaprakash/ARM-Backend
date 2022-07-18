@@ -7,12 +7,10 @@
 package com.armapp.controller;
 
 import com.armapp.model.Talent;
-import com.armapp.modelDTOs.TalentVO;
+import com.armapp.vo.TalentVO;
 import com.armapp.service.ITalentService;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

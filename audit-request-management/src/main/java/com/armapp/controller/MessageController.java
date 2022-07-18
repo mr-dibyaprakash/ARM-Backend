@@ -3,7 +3,7 @@ package com.armapp.controller;
 import com.armapp.model.Message;
 import com.armapp.model.Owner;
 import com.armapp.model.Task;
-import com.armapp.modelDTOs.MessageVO;
+import com.armapp.vo.MessageVO;
 import com.armapp.repository.OwnerRepository;
 import com.armapp.repository.TaskRepository;
 import com.armapp.service.IMessageService;

@@ -7,7 +7,7 @@
     <!--    ProductionCompanyName-->
     <mapping>
         <class-a>com.armapp.model.Production</class-a>
-        <class-b>com.armapp.modelDTOs.ProductionVO</class-b>
+        <class-b>com.armapp.vo.ProductionVO</class-b>
         <field>
             <a>contractNumber</a>
             <b>contractNumber</b>
@@ -22,7 +22,7 @@
     <!--    Project Name & Contract No-->
     <mapping>
         <class-a>com.armapp.model.Project</class-a>
-        <class-b>com.armapp.modelDTOs.ProjectVO</class-b>
+        <class-b>com.armapp.vo.ProjectVO</class-b>
         <field>
             <a>projectName</a>
             <b>projectName</b>
@@ -37,7 +37,7 @@
     <!--    Talents     -->
     <mapping>
         <class-a>com.armapp.model.Talent</class-a>
-        <class-b>com.armapp.modelDTOs.TalentVO</class-b>
+        <class-b>com.armapp.vo.TalentVO</class-b>
         <field>
             <a>talentName</a>
             <b>talentName</b>

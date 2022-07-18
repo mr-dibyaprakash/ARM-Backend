@@ -1,7 +1,6 @@
 package com.armapp.controller;
 
 import com.armapp.model.Category;
-import com.armapp.model.Owner;
 import com.armapp.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

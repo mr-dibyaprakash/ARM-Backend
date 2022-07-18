@@ -1,7 +1,7 @@
 package com.armapp.controller;
 
 import com.armapp.model.Project;
-import com.armapp.modelDTOs.ProjectVO;
+import com.armapp.vo.ProjectVO;
 import com.armapp.service.IProjectService;
 import org.dozer.DozerBeanMapper;
 import org.springframework.http.HttpStatus;
