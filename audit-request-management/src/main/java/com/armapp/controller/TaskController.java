@@ -30,7 +30,7 @@ public class TaskController {
 
     @GetMapping("/tasks/{userId}")
     List<Task> getAllTasksAssignedTo(@PathVariable String userId) {
-        List<Task> tasks = iTaskService.findAllTasksAssignedTo(Integer.valueOf(userId));
+        List<Task> tasks = iTaskService.findAllTasksAssignedTo(userId);
         return tasks;
     }
 }
