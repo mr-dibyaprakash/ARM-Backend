@@ -1,15 +1,20 @@
 package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
+import com.armapp.model.Category;
 import com.armapp.model.Request;
 import com.armapp.model.RequestSchedule;
+import com.armapp.model.Task;
+import com.armapp.repository.CategoryRepository;
 import com.armapp.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -23,7 +28,7 @@ public class RequestServiceImpl implements IRequestService{
 
     private RequestRepository requestRepository;
     @Autowired
-    public void setRequestRepo(RequestRepository requestRepository) {
+    public void setRequestRepository(RequestRepository requestRepository) {
         this.requestRepository = requestRepository;
     }
 
@@ -34,10 +39,6 @@ public class RequestServiceImpl implements IRequestService{
      */
     @Override
     public void addRequest(Request request) {
-        request.setCreatedAt(LocalDateTime.now());
-        RequestSchedule requestSchedule = request.getRequestSchedule();
-        requestSchedule.setCreatedAt(LocalDateTime.now());
-        request.setRequestSchedule(requestSchedule);
         requestRepository.save(request);
     }
 
@@ -48,9 +49,7 @@ public class RequestServiceImpl implements IRequestService{
      */
     @Override
     public void updateRequest(Request request) {
-        Request request1 = requestRepository.findById(request.getRequestId()).get();
-        request1.setUpdatedAt(LocalDateTime.now());
-        requestRepository.save(request1);
+        requestRepository.save(request);
     }
 
     /**
@@ -76,7 +75,6 @@ public class RequestServiceImpl implements IRequestService{
     @Override
     public Request getById(int requestId) throws InvalidIdException {
         return requestRepository.findById(requestId).get();
-
     }
 
     /**

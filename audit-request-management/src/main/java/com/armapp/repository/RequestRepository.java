@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface RequestRepository extends JpaRepository<Request, Integer> {
 
-    @Query(value="SELECT r FROM request r WHERE r.createdBy = :createBy")
-    List<Request> findByAssignedUserId(String createBy);
+//    @Query(value="SELECT r FROM request r WHERE r.createdBy = :createBy")
+//    List<Request> findByAssignedUserId(String createBy);
 }
