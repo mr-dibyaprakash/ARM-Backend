@@ -1,12 +1,14 @@
 package com.armapp.repository;
 
 import com.armapp.model.Request;
+import com.armapp.model.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-/**
- * @author Dibya Prakash Ojha
- * @date : 07-Jul-22
- * @project : audit-request-management
- */
+import java.util.List;
+
 public interface RequestRepository extends JpaRepository<Request, Integer> {
+
+    @Query(value="SELECT r FROM request r WHERE r.createdBy = :createBy")
+    List<Request> findByAssignedUserId(String createBy);
 }
