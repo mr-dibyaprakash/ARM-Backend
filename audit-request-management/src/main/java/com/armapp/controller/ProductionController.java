@@ -3,8 +3,8 @@ package com.armapp.controller;
 
 
 import com.armapp.model.Production;
-import com.armapp.modelDTOs.ProductionVO;
 import com.armapp.service.IProductionService;
+import com.armapp.vo.ProductionVO;
 import org.dozer.DozerBeanMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

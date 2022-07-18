@@ -20,6 +20,7 @@ import java.util.Set;
 @ToString
 public class Request {
     @Id
+
     private Integer requestId;
     //    @Enumerated(EnumType.STRING)
     private String priority;

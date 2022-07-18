@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    @Query(value="SELECT t FROM task t WHERE t.category.owner. = :ownerId")
-    List<Task> findByAssignedUserId(Integer ownerId);
+//    @Query(value="SELECT t FROM task t WHERE t.category.owner. = :ownerId")
+//    List<Task> findByAssignedUserId(Integer ownerId);
 }
