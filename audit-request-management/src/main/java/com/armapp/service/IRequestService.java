@@ -22,4 +22,6 @@ public interface IRequestService {
 
     Request save(Request request);
 
+    List<Request> findByAssignedUserId(String createdByUser);
+
 }

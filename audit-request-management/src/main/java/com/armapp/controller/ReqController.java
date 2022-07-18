@@ -76,4 +76,10 @@ public class ReqController {
         iRequestService.save(request);
 
     }
+
+    @GetMapping("/req/{userId}")
+    ResponseEntity<List<Request>> getAllRequests(@PathVariable String userId){
+        List<Request> requests = iRequestService.findByAssignedUserId(userId);
+        return ResponseEntity.ok(requests);
+    }
 }

@@ -94,4 +94,9 @@ public class RequestServiceImpl implements IRequestService{
     public Request save(Request request) {
         return requestRepository.save(request);
     }
+
+    @Override
+    public List<Request> findByAssignedUserId(String createdByUser) {
+        return requestRepository.findByAssignedUserId(createdByUser);
+    }
 }
