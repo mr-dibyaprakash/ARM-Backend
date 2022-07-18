@@ -89,7 +89,11 @@ public class ProjectServiceImpl implements IProjectService{
 
     @Override
     public List<Project> getAllProjectVos(String name) {
-        return projectRepository.findAllProjectVos(name + "%");
+        return projectRepository.findAllProjectVos(name + "%")
+                .stream()
+                .filter(project -> !project.isDeleted())
+                .sorted(Comparator.comparing(Project::getProjectName))
+                .collect(Collectors.toList());
 
 
     }

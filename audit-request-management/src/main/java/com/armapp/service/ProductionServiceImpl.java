@@ -89,6 +89,10 @@ public class ProductionServiceImpl implements IProductionService{
 
     @Override
     public List<Production> getByProductionCompanyNameLike(String companyName) {
-        return productionRepository.findByProductionCompanyNameLike("%" + companyName + "%");
+        return productionRepository.findByProductionCompanyNameLike("%" + companyName + "%")
+                .stream()
+                .filter(production -> !production.isDeleted())
+                .sorted(Comparator.comparing(Production::getProductionCompanyName))
+                .collect(Collectors.toList());
     }
 }

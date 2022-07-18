@@ -1,4 +1,5 @@
-package com.armapp.modelDTOs;
+package com.armapp.vo;
+
 import lombok.*;
 
 @Getter
@@ -6,8 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CategoryVO {
+public class TalentVO {
 
-    private String reportType;
+    private String talentName;
 
 }
