@@ -27,3 +27,4 @@ keycloak:
   resource: myclient
   public-client: true
   bearer-only: true
+
