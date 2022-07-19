@@ -32,6 +32,7 @@ public class TalentController {
 
 
     @GetMapping("/talents/{keyword}")
+    @RolesAllowed({"manager","report_owner"})
     public ResponseEntity<List<TalentVO>> search(@PathVariable("keyword") String keyword) throws NullPointerException {
         List<Talent> talents = iTalentService.getByTalentNameLike(keyword);
 
@@ -52,7 +53,7 @@ public class TalentController {
 
 
     @GetMapping("/talents")
-    @RolesAllowed("manager")
+    @RolesAllowed({"manager","report_owner"})
     public ResponseEntity<List<TalentVO>> search() throws NullPointerException {
         List<Talent> talents = iTalentService.getAll();
 

@@ -2,15 +2,14 @@ package com.armapp.controller;
 
 import com.armapp.model.Task;
 import com.armapp.service.ITaskService;
+import com.armapp.vo.TaskVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,8 +28,53 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/{userId}")
-    List<Task> getAllTasksAssignedTo(@PathVariable String userId) {
+    ResponseEntity<List<TaskVO>> getAllTasksAssignedTo(@PathVariable String userId) {
         List<Task> tasks = iTaskService.findAllTasksAssignedTo(userId);
-        return tasks;
+        List<TaskVO> taskList = new ArrayList<>();
+        for (Task task : tasks) {
+            TaskVO taskVO = new TaskVO();
+            taskVO.setRequestId(task.getRequest().getRequestId());
+            taskVO.setTaskDescription(task.getRequest().getStatus());
+            taskVO.setProductionCompanyName(task.getRequest().getProductionName());
+            taskVO.setProjectName(task.getRequest().getProjectName());
+            taskVO.setTalentName(task.getRequest().getTalentName());
+            taskVO.setPriority(task.getRequest().getPriority());
+            taskVO.setAuditStartDate(task.getRequest().getRequestSchedule().getAuditStartDate());
+            taskVO.setAuditEndDate(task.getRequest().getRequestSchedule().getAuditEndDate());
+            taskVO.setRequestRaised(task.getRequest().getRequestSchedule().getRequestCreated());
+            taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
+            taskList.add(taskVO);
+
+        }
+        return ResponseEntity.ok().body(taskList);
     }
+
+    /**
+     *
+     * @author BabaSriHarshaErranki Abuthair
+     * @return
+     */
+    @GetMapping("/tasks-vo")
+    ResponseEntity<List<TaskVO>> getAllTasksAssignedTo() {
+        List<Task> tasks = iTaskService.findAll();
+        //  List<String> contractNumber = iContract.findByContractNum(int talentId,int projectId);
+        List<TaskVO> taskList = new ArrayList<>();
+        for (Task task : tasks) {
+            TaskVO taskVO = new TaskVO();
+            taskVO.setRequestId(task.getRequest().getRequestId());
+            taskVO.setTaskDescription(task.getRequest().getStatus());
+            taskVO.setProductionCompanyName(task.getRequest().getProductionName());
+            taskVO.setProjectName(task.getRequest().getProjectName());
+            taskVO.setTalentName(task.getRequest().getTalentName());
+            taskVO.setPriority(task.getRequest().getPriority());
+            taskVO.setAuditStartDate(task.getRequest().getRequestSchedule().getAuditStartDate());
+            taskVO.setAuditEndDate(task.getRequest().getRequestSchedule().getAuditEndDate());
+            taskVO.setRequestRaised(task.getRequest().getRequestSchedule().getRequestCreated());
+            taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
+            taskList.add(taskVO);
+
+        }
+        return ResponseEntity.ok().body(taskList);
+    }
+
 }

@@ -29,6 +29,9 @@ public class MessageController {
     @Autowired
     private TaskRepository taskRepository;
 
+    public MessageController() {
+    }
+
 
     @GetMapping("/messages/{taskId}")
         // http://localhost:9090/messages/1

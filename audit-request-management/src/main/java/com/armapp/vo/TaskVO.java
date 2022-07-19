@@ -4,6 +4,8 @@ import com.armapp.model.Category;
 import com.armapp.model.Priority;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,13 +14,14 @@ import lombok.*;
 public class TaskVO {
 
     private int requestId;
-    private Category taskDescription;
-    private ProductionVO productionCompanyName;
-    private ProjectVO projectName;
-    private TalentVO talentName;
-    private Priority priority;
-    private ReportVO auditPeriod;
-    private RequestScheduleVO dates;
-
+    private String taskDescription;
+    private String productionCompanyName;
+    private String projectName;
+    private String talentName;
+    private String priority;
+    private LocalDate auditStartDate;
+    private LocalDate auditEndDate;
+    private LocalDate requestRaised;
+    private LocalDate requestClosed;
 
 }
