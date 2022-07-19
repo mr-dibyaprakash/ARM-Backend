@@ -19,12 +19,12 @@ public class RequestVO {
 
 
     private Integer requestId;
-    private Priority priority;
-    private Union union;
-    private Status status;
-    private ProductionVO productionCompanyName;
-    private ProjectVO projectName;
-    private TalentVO talentName;
+    private String priority;
+    private String union;
+    private String status;
+    private String productionCompanyName;
+    private String projectName;
+    private String talentName;
     private RequestScheduleVO requestSchedule;
 //    private Set<Task> tasks;
 
