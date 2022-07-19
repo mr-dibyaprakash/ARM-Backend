@@ -32,64 +32,6 @@ public class RequestServiceImpl implements IRequestService{
         this.requestRepository = requestRepository;
     }
 
-    /**
-     *
-     * @author - AkashKanaparthi
-     * @param request
-     */
-    @Override
-    public void addRequest(Request request) {
-        requestRepository.save(request);
-    }
-
-    /**
-     *
-     * @author - AkashKanaparthi
-     * @param request
-     */
-    @Override
-    public void updateRequest(Request request) {
-        requestRepository.save(request);
-    }
-
-    /**
-     *
-     * @author - AkashKanaparthi
-     * @param requestId
-     * @throws InvalidIdException
-     */
-    @Override
-    public void deleteRequest(int requestId) throws InvalidIdException{
-        Request request = requestRepository.findById(requestId).get();
-        request.setDeleted(true);
-        requestRepository.save(request);
-    }
-
-    /**
-     *
-     * @author - AkashKanaparthi
-     * @param requestId
-     * @return
-     * @throws InvalidIdException
-     */
-    @Override
-    public Request getById(int requestId) throws InvalidIdException {
-        return requestRepository.findById(requestId).get();
-    }
-
-    /**
-     * @author - AkashKanaparthi
-     * @return
-     */
-    @Override
-    public List<Request> getAll() {
-        return requestRepository.findAll()
-                .stream()
-                .filter(request -> !request.isDeleted())
-                .sorted(Comparator.comparing(Request::getRequestId))
-                .collect(Collectors.toList());
-    }
-
     @Override
     public Request save(Request request) {
         return requestRepository.save(request);

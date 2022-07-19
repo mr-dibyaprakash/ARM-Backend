@@ -30,7 +30,7 @@ public class TaskServiceImpl implements ITaskService {
     }
 
     @Override
-    public List<Task> findAllTasksAssignedTo(Integer ownerId) {
-        return taskRepository.findByAssignedUserId(ownerId);
+    public List<Task> findAllTasksAssignedTo(String userId) {
+        return taskRepository.findByAssignedUserId(userId);
     }
 }
