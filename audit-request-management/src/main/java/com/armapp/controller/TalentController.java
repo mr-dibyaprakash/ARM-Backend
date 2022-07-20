@@ -70,5 +70,12 @@ public class TalentController {
                         .add("desc", "Getting All Talents"))
                 .body(talentsVOList);
     }
+    @GetMapping("/talents/talentName/{talentName}")
+    public ResponseEntity<String> getContractNumber(@PathVariable("talentName") String talentName){
+        String contractNumber = iTalentService.getByTalentName(talentName);
 
+        return ResponseEntity.ok().headers(httpHeaders -> httpHeaders
+                        .add("desc", "getting contract number for the selected talent name"))
+                .body(contractNumber);
+    }
 }

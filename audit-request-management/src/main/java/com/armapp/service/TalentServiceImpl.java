@@ -94,4 +94,9 @@ public class TalentServiceImpl implements ITalentService {
                 .sorted(Comparator.comparing(Talent::getTalentName))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public String getByTalentName(String talentName) {
+        return talentRepository.findByTalentName(talentName);
+    }
 }

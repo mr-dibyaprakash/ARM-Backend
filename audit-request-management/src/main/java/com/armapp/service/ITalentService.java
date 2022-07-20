@@ -25,4 +25,5 @@ public interface ITalentService {
 
 
     List<Talent> getByTalentNameLike(String keyword);
+    public String getByTalentName(String talentName);
 }
