@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Project {
+public class Project implements Serializable {
     @Id
     private Integer projectId;
     private String projectName;
@@ -28,12 +29,10 @@ public class Project {
     @JsonIgnore
     private Production production;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "talent_project",
-            joinColumns = {@JoinColumn(name = "project_id")},
-            inverseJoinColumns = {@JoinColumn(name ="talent_id")}
-    )
-    private Set<Talent> talents;
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.project", cascade=CascadeType.ALL)
+    private Set<TalentProject> talentProjects;
 
     private String createdBy;
     private LocalDateTime createdAt;

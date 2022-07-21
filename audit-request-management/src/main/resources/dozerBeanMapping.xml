@@ -3,7 +3,14 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://dozer.sourceforge.net
       http://dozer.sourceforge.net/schema/beanmapping.xsd">
-
+    <configuration>
+        <custom-converters>
+            <converter type="io.craftsman.Jdk8CompatibilityConverter">
+                <class-a>java.time.LocalDate</class-a>
+                <class-b>java.time.LocalDate</class-b>
+            </converter>
+        </custom-converters>
+    </configuration>
     <!--    ProductionCompanyName-->
     <mapping>
         <class-a>com.armapp.model.Production</class-a>
@@ -43,5 +50,47 @@
             <b>talentName</b>
         </field>
     </mapping>
-    <!--    Talents    -->
+
+    <!--    Request vo    -->
+    <mapping>
+        <class-a>com.armapp.model.Request</class-a>
+        <class-b>com.armapp.vo.RequestVO</class-b>
+        <field>
+            <a>requestId</a>
+            <b>requestId</b>
+        </field>
+        <field>
+            <a>priority</a>
+            <b>priority</b>
+        </field>
+        <field>
+            <a>unionName</a>
+            <b>union</b>
+        </field>
+        <field>
+            <a>status</a>
+            <b>status</b>
+        </field>
+        <field>
+            <a>productionName</a>
+            <b>productionCompanyName</b>
+        </field>
+        <field>
+            <a>projectName</a>
+            <b>projectName</b>
+        </field>
+        <field>
+            <a>talentName</a>
+            <b>talentName</b>
+        </field>
+        <field>
+            <a>requestSchedule.requestCreated</a>
+            <b>requestSchedule.requestCreated</b>
+        </field>
+        <field>
+            <a>requestSchedule.expectedClosure</a>
+            <b>requestSchedule.expectedClosure</b>
+        </field>
+
+    </mapping>
 </mappings>

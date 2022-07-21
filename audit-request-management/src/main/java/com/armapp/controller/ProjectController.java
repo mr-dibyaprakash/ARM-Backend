@@ -24,7 +24,7 @@ public class ProjectController {
     }
 
     @GetMapping("/projects/{name}")
-    @RolesAllowed("manager")
+//    @RolesAllowed("manager")
     ResponseEntity<List<ProjectVO>> showProjectVODetails(@PathVariable("name") String name){
         List<Project> projectList = iProjectService.getAllProjectVos(name);
         List<ProjectVO> projectVOList = new ArrayList<ProjectVO>();
@@ -43,7 +43,7 @@ public class ProjectController {
     }
 
     @GetMapping("/projects")
-    @RolesAllowed("manager")
+//    @RolesAllowed("manager")
     ResponseEntity<List<ProjectVO>> getAllProjects(){
         List<Project> projectList = iProjectService.getAll();
         List<ProjectVO> projectVOList = new ArrayList<ProjectVO>();

@@ -1,8 +1,11 @@
+
+
 package com.armapp.model;
 
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -17,16 +20,17 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Talent {
+public class Talent implements Serializable {
 
     @Id
     @Column(name = "talent_id")
     private Integer talentId;
     private String talentName;
 
-    @ManyToMany(mappedBy = "talents")
-    private Set<Project> projects;
 
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.talent", cascade=CascadeType.ALL)
+    private Set<TalentProject> talentProjects;
     private String createdBy;
     private LocalDateTime createdAt;
     private String updatedBy;

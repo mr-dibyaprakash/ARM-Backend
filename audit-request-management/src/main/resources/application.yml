@@ -31,10 +31,11 @@ spring:
 #key clock related properties
 keycloak:
   realm: myrealm
-  auth-server-url: http://localhost:7688
+  auth-server-url: http://192.168.1.39:7688
   resource: myclient
   public-client: true
   bearer-only: true
+
 
 #aws s3 related properties
 cloud:
@@ -50,3 +51,4 @@ cloud:
 application:
   bucket:
     name: gryffindors-fp
+

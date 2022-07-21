@@ -31,6 +31,7 @@ public class TaskServiceImpl implements ITaskService {
 
     @Override
     public List<Task> findAllTasksAssignedTo(String userId) {
+
         return taskRepository.findByAssignedUserId(userId);
     }
 }
