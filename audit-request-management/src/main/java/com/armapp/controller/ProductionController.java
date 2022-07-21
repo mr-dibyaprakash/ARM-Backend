@@ -28,7 +28,7 @@ public class ProductionController {
     @RolesAllowed({"manager","report_owner"})
     ResponseEntity<List<ProductionVO>> getByProductionCompanyNameLike(@PathVariable("companyName") String companyName) {
         List<Production> names = iProductionService.getByProductionCompanyNameLike(companyName);
-        List<ProductionVO> productionVOList = new ArrayList<ProductionVO>();
+        List<ProductionVO> productionVOList = new ArrayList<>();
         DozerBeanMapper mapper = new DozerBeanMapper();
         List<String> myMappingFiles = new ArrayList<>();
         myMappingFiles.add("dozerBeanMapping.xml");
@@ -49,7 +49,7 @@ public class ProductionController {
     ResponseEntity<List<ProductionVO>> getAllProductionCompany() {
 
         List<Production> names = iProductionService.getAll();
-        List<ProductionVO> productionVOList = new ArrayList<ProductionVO>();
+        List<ProductionVO> productionVOList = new ArrayList<>();
         DozerBeanMapper mapper = new DozerBeanMapper();
         List<String> myMappingFiles = new ArrayList<>();
         myMappingFiles.add("dozerBeanMapping.xml");
