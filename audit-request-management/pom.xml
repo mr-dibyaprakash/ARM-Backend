@@ -103,6 +103,12 @@
 			<artifactId>dozer-jdk8-support</artifactId>
 			<version>1.0.6</version>
 		</dependency>
+			<!--	AWS S3 	-->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.64</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

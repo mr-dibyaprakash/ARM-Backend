@@ -19,6 +19,14 @@ spring:
        classpath: db/migration
      baselineOnMigrate: true
 
+#uploading file size information
+#  servlet:
+#    multipart:
+#      enabled: true
+#      file-size-threshold: 2MB
+#      max-file-size: 5MB
+#      max-request-size: 10MB
+
 
 #key clock related properties
 keycloak:
@@ -27,3 +35,18 @@ keycloak:
   resource: myclient
   public-client: true
   bearer-only: true
+
+#aws s3 related properties
+cloud:
+  aws:
+    credentials:
+      access-key:  AKIATQZYVULBVXYKG5OS #AKIAZL76EX2IPEUY5MDW #
+      secret-key:  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 #xHoD5HmaqMxfBAJP8NtdX3zZLEvA36W/wRQryYcj #
+    region:
+      static: ap-south-1
+    stack:
+      auto: false
+
+application:
+  bucket:
+    name: gryffindors-fp
