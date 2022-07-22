@@ -90,6 +90,7 @@ public class TaskController {
         taskVO.setProductionCompanyName(task.getRequest().getProductionName());
         taskVO.setProjectName(task.getRequest().getProjectName());
         taskVO.setTalentName(task.getRequest().getTalentName());
+        taskVO.setContractNo(task.getRequest().getContractNo());
         taskVO.setPriority(task.getRequest().getPriority());
         taskVO.setAuditStartDate(task.getRequest().getRequestSchedule().getAuditStartDate());
         taskVO.setAuditEndDate(task.getRequest().getRequestSchedule().getAuditEndDate());

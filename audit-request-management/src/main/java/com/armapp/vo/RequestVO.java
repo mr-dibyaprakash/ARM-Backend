@@ -26,6 +26,7 @@ public class RequestVO {
     private String projectName;
     private String talentName;
     private RequestScheduleVO requestSchedule;
+    private String contractNo;
 //    private Set<Task> tasks;
 
 }

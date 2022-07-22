@@ -34,4 +34,5 @@ public class CreateRequestVO {
     private LocalDate auditEndDate;
     private Set<Task> tasksList;
     private String createdBy;
+    private String contractNo;
 }

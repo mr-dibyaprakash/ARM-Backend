@@ -24,5 +24,6 @@ public class TaskVO {
     private LocalDate auditEndDate;
     private LocalDate requestRaised;
     private LocalDate requestClosed;
+    private String contractNo;
 
 }

@@ -87,6 +87,7 @@ public class RequestController {
         request.setStatus(createRequestVO.getStatus());
         request.setProductionName(createRequestVO.getProductionName());
         request.setTalentName(createRequestVO.getTalentName());
+        request.setContractNo(createRequestVO.getContractNo());
         request.setProductionNumber(createRequestVO.getProductionNumber());
         request.setProjectName(createRequestVO.getProjectName());
         request.setRequestCreatedDate(createRequestVO.getRequestSchedule().getRequestCreated());
