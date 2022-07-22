@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class TaskVO {
 
     private int requestId;
+    private Integer taskId;
     private String taskDescription;
     private String productionCompanyName;
     private String projectName;

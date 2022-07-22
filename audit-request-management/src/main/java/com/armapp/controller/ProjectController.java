@@ -23,10 +23,10 @@ public class ProjectController {
         this.iProjectService = iProjectService;
     }
 
-    @GetMapping("/projects/{name}")
+    @GetMapping("/projectNames/productionId/{productionId}/typedProjectName/{typedProjectName}")
 //    @RolesAllowed("manager")
-    ResponseEntity<List<ProjectVO>> showProjectVODetails(@PathVariable("name") String name){
-        List<Project> projectList = iProjectService.getAllProjectVos(name);
+    ResponseEntity<List<ProjectVO>> showTypedProjectNames(@PathVariable("productionId") Integer productionId,@PathVariable("typedProjectName") String typedProjectName){
+        List<Project> projectList = iProjectService.getTypedProjectNames(productionId,typedProjectName);
         List<ProjectVO> projectVOList = new ArrayList<ProjectVO>();
         DozerBeanMapper mapper = new DozerBeanMapper();
         List<String> myMappingFiles = new ArrayList<>();
@@ -42,10 +42,12 @@ public class ProjectController {
                 .body(projectVOList);
     }
 
-    @GetMapping("/projects")
+
+
+    @GetMapping("/projectNames/productionId/{productionId}")
 //    @RolesAllowed("manager")
-    ResponseEntity<List<ProjectVO>> getAllProjects(){
-        List<Project> projectList = iProjectService.getAll();
+    ResponseEntity<List<ProjectVO>> getAllProjectNames(@PathVariable("productionId") Integer productionId){
+        List<Project> projectList = iProjectService.getAllProjectNames(productionId);
         List<ProjectVO> projectVOList = new ArrayList<ProjectVO>();
         DozerBeanMapper mapper = new DozerBeanMapper();
         List<String> myMappingFiles = new ArrayList<>();
@@ -60,5 +62,8 @@ public class ProjectController {
                         .add("desc", "get all project"))
                 .body(projectVOList);
     }
+
+
+
 }
 

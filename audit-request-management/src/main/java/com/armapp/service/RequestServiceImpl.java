@@ -38,6 +38,11 @@ public class RequestServiceImpl implements IRequestService{
     }
 
     @Override
+    public List<Request> getAll() {
+        return requestRepository.findAll();
+    }
+
+    @Override
     public List<Request> findByAssignedUserId(String createdByUser) {
         return requestRepository.findByAssignedUserId(createdByUser);
     }

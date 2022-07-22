@@ -12,4 +12,5 @@ public interface ITaskService {
     public List<Task> findAll();
 
     public List<Task> findAllTasksAssignedTo(String userId);
+    Task getByTaskId(Integer taskId);
 }

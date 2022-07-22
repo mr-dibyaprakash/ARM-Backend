@@ -11,4 +11,5 @@ public class TalentVO {
 
     private String talentName;
 
+
 }

@@ -89,8 +89,8 @@ public class MessageController {
     //            "to":"10",
     //            "messageText":"Sample message"}
     public ResponseEntity<MessageVO> createMessage(@RequestBody MessageVO messageVO) {
-        Owner from = ownerRepository.findById(Integer.valueOf(messageVO.getFrom())).get();
-        Owner to = ownerRepository.findById(Integer.valueOf(messageVO.getTo())).get();
+        Owner from=ownerRepository.getByOwnerUserId(messageVO.getFromUserName());
+        Owner to=ownerRepository.getByOwnerUserId(messageVO.getToUserName());
         Task task = taskRepository.findById(messageVO.getTaskId()).get();
         Message message = new Message();
         // message.setMessageId(123);
@@ -106,9 +106,9 @@ public class MessageController {
         msgVo.setCreatedAt(savedMsg.getCreatedAt());
         msgVo.setMessageText(savedMsg.getMessageText());
         msgVo.setFrom(savedMsg.getMessageFrom().getOwnerId().toString());
-        msgVo.setFromUserName(savedMsg.getMessageFrom().getOwnerName());
+        msgVo.setFromUserName(savedMsg.getMessageFrom().getOwnerUserId());
         msgVo.setTo(savedMsg.getMessageTo().getOwnerId().toString());
-        msgVo.setToUserName(savedMsg.getMessageTo().getOwnerName());
+        msgVo.setToUserName(savedMsg.getMessageTo().getOwnerUserId());
         msgVo.setTaskId(savedMsg.getTask().getTaskId());
         msgVo.setSeen(savedMsg.isSeen());
         return ResponseEntity.status(HttpStatus.OK)

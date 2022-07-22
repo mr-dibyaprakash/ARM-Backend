@@ -26,7 +26,7 @@
     </mapping>
     <!--    ProductionCompanyName-->
 
-    <!--    Project Name & Contract No-->
+    <!--    Project Name -->
     <mapping>
         <class-a>com.armapp.model.Project</class-a>
         <class-b>com.armapp.vo.ProjectVO</class-b>
@@ -34,12 +34,8 @@
             <a>projectName</a>
             <b>projectName</b>
         </field>
-        <field>
-            <a>production.contractNumber</a>
-            <b>contractNumber</b>
-        </field>
+
     </mapping>
-    <!--    Project Name & Contract No-->
 
     <!--    Talents     -->
     <mapping>
@@ -93,4 +89,6 @@
         </field>
 
     </mapping>
+
+
 </mappings>

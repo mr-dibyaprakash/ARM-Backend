@@ -34,4 +34,9 @@ public class TaskServiceImpl implements ITaskService {
 
         return taskRepository.findByAssignedUserId(userId);
     }
+
+    @Override
+    public Task getByTaskId(Integer taskId) {
+        return taskRepository.findByTaskId(taskId);
+    }
 }

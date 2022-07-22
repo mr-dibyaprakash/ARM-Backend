@@ -35,6 +35,7 @@ public class TaskController {
         List<TaskVO> taskList = new ArrayList<>();
         for (Task task : tasks) {
             TaskVO taskVO = new TaskVO();
+            taskVO.setTaskId(task.getTaskId());
             taskVO.setRequestId(task.getRequest().getRequestId());
             taskVO.setTaskDescription(task.getRequest().getStatus());
             taskVO.setProductionCompanyName(task.getRequest().getProductionName());
@@ -63,6 +64,7 @@ public class TaskController {
         List<TaskVO> taskList = new ArrayList<>();
         for (Task task : tasks) {
             TaskVO taskVO = new TaskVO();
+            taskVO.setTaskId(task.getTaskId());
             taskVO.setRequestId(task.getRequest().getRequestId());
             taskVO.setTaskDescription(task.getRequest().getStatus());
             taskVO.setProductionCompanyName(task.getRequest().getProductionName());
@@ -78,5 +80,21 @@ public class TaskController {
         }
         return ResponseEntity.ok().body(taskList);
     }
-
+    @GetMapping("/taskVo/taskId/{taskId}")
+    ResponseEntity<TaskVO> getTaskById(@PathVariable("taskId") String taskId) {
+        Task task = iTaskService.getByTaskId(Integer.valueOf(taskId));
+        TaskVO taskVO = new TaskVO();
+        taskVO.setTaskId(task.getTaskId());
+        taskVO.setRequestId(task.getRequest().getRequestId());
+        taskVO.setTaskDescription(task.getRequest().getStatus());
+        taskVO.setProductionCompanyName(task.getRequest().getProductionName());
+        taskVO.setProjectName(task.getRequest().getProjectName());
+        taskVO.setTalentName(task.getRequest().getTalentName());
+        taskVO.setPriority(task.getRequest().getPriority());
+        taskVO.setAuditStartDate(task.getRequest().getRequestSchedule().getAuditStartDate());
+        taskVO.setAuditEndDate(task.getRequest().getRequestSchedule().getAuditEndDate());
+        taskVO.setRequestRaised(task.getRequest().getRequestSchedule().getRequestCreated());
+        taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
+        return ResponseEntity.ok().body(taskVO);
+    }
 }

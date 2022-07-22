@@ -20,5 +20,6 @@ public interface IProjectService {
 
     List<Project> getAll();
 
-    List<Project> getAllProjectVos(String name);
+    List<Project> getAllProjectNames(Integer productionId);
+    List<Project> getTypedProjectNames(Integer productionId,String typedProjectName);
 }

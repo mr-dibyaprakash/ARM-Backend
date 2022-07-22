@@ -88,14 +88,16 @@ public class ProjectServiceImpl implements IProjectService{
     }
 
     @Override
-    public List<Project> getAllProjectVos(String name) {
-        return projectRepository.findAllProjectVos(name + "%")
-                .stream()
-                .filter(project -> !project.isDeleted())
-                .sorted(Comparator.comparing(Project::getProjectName))
-                .collect(Collectors.toList());
+    public List<Project> getAllProjectNames(Integer productionId) {
 
 
+        return projectRepository.findAllProjectNames(productionId);
     }
+
+    @Override
+    public List<Project> getTypedProjectNames(Integer productionId, String typedProjectName) {
+        return projectRepository.findTypedProjectNames(productionId,typedProjectName+"%");
+    }
+
 
 }
