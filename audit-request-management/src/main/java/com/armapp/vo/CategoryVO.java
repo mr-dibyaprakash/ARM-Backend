@@ -8,6 +8,8 @@ import lombok.*;
 @ToString
 public class CategoryVO {
 
+    private Integer categoryId;
     private String reportType;
+    private String ownerName;
 
 }

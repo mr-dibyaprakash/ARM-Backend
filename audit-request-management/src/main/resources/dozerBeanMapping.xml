@@ -91,4 +91,22 @@
     </mapping>
 
 
+    <!--    CategoryVO-->
+    <mapping>
+        <class-a>com.armapp.model.Category</class-a>
+        <class-b>com.armapp.vo.CategoryVO</class-b>
+        <field>
+            <a>categoryId</a>
+            <b>categoryId</b>
+        </field>
+        <field>
+            <a>reportType</a>
+            <b>reportType</b>
+        </field>
+        <field>
+            <a>owner.ownerName</a>
+            <b>ownerName</b>
+        </field>
+    </mapping>
+
 </mappings>
