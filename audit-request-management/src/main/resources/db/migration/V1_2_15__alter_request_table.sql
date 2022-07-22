@@ -1,0 +1,1 @@
+ALTER TABLE request ADD contract_no varchar(128);
