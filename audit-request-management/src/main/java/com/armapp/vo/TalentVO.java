@@ -10,6 +10,6 @@ import lombok.*;
 public class TalentVO {
 
     private String talentName;
-
+    private String contractNo;
 
 }
