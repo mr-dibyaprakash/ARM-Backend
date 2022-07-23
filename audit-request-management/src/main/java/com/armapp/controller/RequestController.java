@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -38,7 +39,7 @@ public class RequestController {
     @GetMapping("/request/{userId}")
     ResponseEntity<List<RequestVO>> getAllRequests(@PathVariable String userId) {
         List<Request> requests = iRequestService.findByAssignedUserId(userId);
-        List<RequestVO> requestVOList = new ArrayList<RequestVO>();
+        List<RequestVO> requestVOList = new ArrayList<>();
         DozerBeanMapper mapper = new DozerBeanMapper();
         List<String> myMappingFiles = new ArrayList<>();
         myMappingFiles.add("dozerBeanMapping.xml");
@@ -122,10 +123,3 @@ public class RequestController {
         return ResponseEntity.status(HttpStatus.OK).body("Created Request");
     }
 }
-
-
-
-
-
-
-

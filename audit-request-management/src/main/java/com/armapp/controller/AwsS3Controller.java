@@ -2,7 +2,14 @@ package com.armapp.controller;
 
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.armapp.model.Assets;
+import com.armapp.model.Request;
+import com.armapp.model.Task;
+import com.armapp.repository.AssetsRepository;
+import com.armapp.repository.RequestRepository;
+import com.armapp.repository.TaskRepository;
 import com.armapp.service.AwsS3Service;
+import com.armapp.service.IAssetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
@@ -12,8 +19,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Map;
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.*;
 
 /**
  * @author Dibya Prakash Ojha
@@ -24,25 +31,62 @@ import java.util.UUID;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class AwsS3Controller {
-    private static final String MESSAGE_1 = "Uploaded the file successfully";
-    private static final String FILE_NAME = "fileName";
 
     private AwsS3Service awsS3Service;
+
+    @Autowired
+    private RequestRepository requestRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
+
+    @Autowired
+    private IAssetsService assetsService;
 
     @Autowired
     public void setAwsS3Service(AwsS3Service awsS3Service) {
         this.awsS3Service = awsS3Service;
     }
 
-    @GetMapping("/generate-upload-url")
-    public ResponseEntity<String> generateUploadUrl() {
-        return ResponseEntity.ok(
-                awsS3Service.generatePreSignedUrl(UUID.randomUUID()+".txt", "gryffindors-fp", HttpMethod.PUT));
-    }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file){
-        return ResponseEntity.ok(awsS3Service.uploadFile(file));
+    public ResponseEntity<String> uploadFile(@RequestParam("files") MultipartFile[] files, Integer requestId, Integer taskId){
+        Assets assets = new Assets();
+        assets.setCreatedAt(LocalDateTime.now());
+        final String[] filePrefix = {null};
+        String message;
+        try{
+            List<String> fileNames = new ArrayList<>();
+            List<Assets> assetList = new ArrayList<>();
+            Arrays.asList(files).stream().forEach(file -> {
+                if(requestId != null) {
+                    filePrefix[0] = "r"+"_"+requestId+"_";
+                    Request request = requestRepository.findById(requestId).get();
+                    assets.setRequest(request);
+                    assets.setAssetName(filePrefix[0] + file.getOriginalFilename());
+                    assetList.add(assets);
+                    awsS3Service.uploadFile(file, filePrefix[0]);
+                    assetsService.addAssets(assets);
+                    fileNames.add(file.getOriginalFilename());
+                }
+                if(taskId!=null) {
+                    filePrefix[0] = "t"+"_"+taskId+"_";
+                    Task task = taskRepository.findById(taskId).get();
+                    assets.setTask(task);
+                    assets.setAssetName(filePrefix[0] + file.getOriginalFilename());
+                    assetList.add(assets);
+                    awsS3Service.uploadFile(file, filePrefix[0]);
+                    assetsService.addAssets(assets);
+                    fileNames.add(file.getOriginalFilename());
+                }
+            });
+//            assetsService.addAssets(assetList);
+            message = "Uploaded the files successfully: "+ fileNames;
+            return ResponseEntity.ok().body(message);
+        } catch (Exception e) {
+            message = " Failed to upload files!";
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+        }
     }
 
     @GetMapping("/download/{fileName}")
@@ -61,21 +105,9 @@ public class AwsS3Controller {
         return ResponseEntity.ok(awsS3Service.deleteFile(fileName));
     }
 
-//    @GetMapping("/download")
-//    public ResponseEntity<Object> findByName(@RequestBody(required = false) Map<String, String> params) {
-//        return ResponseEntity
-//                .ok()
-//                .cacheControl(CacheControl.noCache())
-//                .header("Content-type", "application/octet-stream")
-//                .header("Content-disposition", "attachment; filename=\"" + params.get(FILE_NAME) + "\"")
-//                .body(new InputStreamResource(awsS3Service.findByName(params.get(FILE_NAME))));
-//    }
-
-//    @PostMapping("/upload")
-//    public ResponseEntity<Object> save(@RequestParam("file") MultipartFile multipartFile) {
-//        awsS3Service.save(multipartFile);
-//        return new ResponseEntity<>(MESSAGE_1+":"+multipartFile.getOriginalFilename(), HttpStatus.OK);
-//    }
-
-
+    @GetMapping("/generate-upload-url")
+    public ResponseEntity<String> generateUploadUrl() {
+        return ResponseEntity.ok(
+                awsS3Service.generatePreSignedUrl(UUID.randomUUID()+".txt", "gryffindors-fp", HttpMethod.PUT));
+    }
 }
