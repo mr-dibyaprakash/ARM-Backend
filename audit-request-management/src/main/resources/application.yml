@@ -41,8 +41,8 @@ keycloak:
 cloud:
   aws:
     credentials:
-      access-key:  AKIATQZYVULBVXYKG5OS #AKIAZL76EX2IPEUY5MDW #
-      secret-key:  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 #xHoD5HmaqMxfBAJP8NtdX3zZLEvA36W/wRQryYcj #
+      access-key: AKIAZL76EX2IPEUY5MDW #AKIATQZYVULBVXYKG5OS #
+      secret-key: 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 #m5GKIAarsS9RZfisZaWRqENkFQuXfK7xnPPouoWx  #
     region:
       static: ap-south-1
     stack:
@@ -50,5 +50,5 @@ cloud:
 
 application:
   bucket:
-    name: gryffindors-fp
+    name: gryffindors-fps
 

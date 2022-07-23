@@ -16,6 +16,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class RequestController {
 
     private IRequestService iRequestService;
@@ -144,7 +145,7 @@ public class RequestController {
 //
 //    }
 
-    @GetMapping("/req/{userId}")
+    @GetMapping("/request/{userId}")
     ResponseEntity<List<Request>> getAllRequests(@PathVariable String userId){
         List<Request> requests = iRequestService.findByAssignedUserId(userId);
         return ResponseEntity.ok(requests);

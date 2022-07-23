@@ -3,9 +3,7 @@ package com.armapp.service;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.services.s3.model.*;
 import com.amazonaws.util.IOUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -21,8 +19,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Dibya Prakash Ojha
@@ -51,11 +51,11 @@ public class AwsS3Service {
     }
 
     // for uploading a file to s3 bucket
-    public String uploadFile(MultipartFile file) {
+    public String uploadFile(MultipartFile file, String filePrefix) {
         String fileName = null;
         try {
             File fileObj = convertMultiPartFileToFile(file);
-            fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            fileName = filePrefix + file.getOriginalFilename();
             amazonS3.putObject(new PutObjectRequest(s3BucketName, fileName, fileObj));
             Files.delete(fileObj.toPath());
 //            fileObj.delete();
@@ -65,7 +65,6 @@ public class AwsS3Service {
             LOG.error("Error {} occurred while deleting temporary file", ex.getLocalizedMessage());
         }
         return "File Uploaded: " + fileName;
-
     }
 
     // for downloading a file from s3 bucket
@@ -79,6 +78,27 @@ public class AwsS3Service {
     public String deleteFile(String fileName) {
         amazonS3.deleteObject(s3BucketName, fileName);
         return fileName + " removed ...";
+    }
+
+    // for getting all the files in a bucket
+    public List<String> listFiles() {
+        ListObjectsRequest listObjectsRequest =
+                new ListObjectsRequest()
+                        .withBucketName(s3BucketName);
+        List<String> keys = new ArrayList<>();
+        ObjectListing objects = amazonS3.listObjects(listObjectsRequest);
+        while (true) {
+            List<S3ObjectSummary> objectSummaries = objects.getObjectSummaries();
+            if (objectSummaries.size() < 1) {
+                break;
+            }
+            for (S3ObjectSummary item : objectSummaries) {
+                if (!item.getKey().contains("_"))
+                    keys.add(item.getKey());
+            }
+            objects = amazonS3.listNextBatchOfObjects(objects);
+        }
+        return keys;
     }
 
     // for converting multipart file to file format
