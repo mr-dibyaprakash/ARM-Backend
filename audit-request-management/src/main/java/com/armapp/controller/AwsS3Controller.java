@@ -9,6 +9,7 @@ import com.armapp.repository.AssetsRepository;
 import com.armapp.repository.RequestRepository;
 import com.armapp.repository.TaskRepository;
 import com.armapp.service.AwsS3Service;
+import com.armapp.service.IAssetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
@@ -40,7 +41,7 @@ public class AwsS3Controller {
     private TaskRepository taskRepository;
 
     @Autowired
-    private AssetsRepository assetsRepository;
+    private IAssetsService assetsService;
 
     @Autowired
     public void setAwsS3Service(AwsS3Service awsS3Service) {
@@ -56,30 +57,30 @@ public class AwsS3Controller {
         String message;
         try{
             List<String> fileNames = new ArrayList<>();
-//            List<Assets> assetList = new ArrayList<>();
+            List<Assets> assetList = new ArrayList<>();
             Arrays.asList(files).stream().forEach(file -> {
                 if(requestId != null) {
                     filePrefix[0] = "r"+"_"+requestId+"_";
                     Request request = requestRepository.findById(requestId).get();
                     assets.setRequest(request);
-                    assets.setAssetName(filePrefix[0] +file.getOriginalFilename());
-//                    assetList.add(assets);
+                    assets.setAssetName(filePrefix[0] + file.getOriginalFilename());
+                    assetList.add(assets);
                     awsS3Service.uploadFile(file, filePrefix[0]);
-                    assetsRepository.save(assets);
+                    assetsService.addAssets(assets);
                     fileNames.add(file.getOriginalFilename());
                 }
                 if(taskId!=null) {
                     filePrefix[0] = "t"+"_"+taskId+"_";
                     Task task = taskRepository.findById(taskId).get();
                     assets.setTask(task);
-                    assets.setAssetName(filePrefix[0] +file.getOriginalFilename());
-//                    assetList.add(assets);
+                    assets.setAssetName(filePrefix[0] + file.getOriginalFilename());
+                    assetList.add(assets);
                     awsS3Service.uploadFile(file, filePrefix[0]);
-                    assetsRepository.save(assets);
+                    assetsService.addAssets(assets);
                     fileNames.add(file.getOriginalFilename());
                 }
             });
-//            assetsRepository.saveAll(assetList);
+//            assetsService.addAssets(assetList);
             message = "Uploaded the files successfully: "+ fileNames;
             return ResponseEntity.ok().body(message);
         } catch (Exception e) {
