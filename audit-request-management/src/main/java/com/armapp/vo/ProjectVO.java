@@ -2,6 +2,8 @@ package com.armapp.vo;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -10,5 +12,6 @@ import lombok.*;
 public class ProjectVO {
 
     private String projectName;
+    private List<TalentVO> talentVOList;
 
 }

@@ -52,6 +52,7 @@ public class ProjectController {
                 talentVOList.add(talentVO);
             }
             projectVO.setTalentVOList(talentVOList);
+            projectVOList.add(projectVO);
         }
         return ResponseEntity.status(HttpStatus.OK)
                 .headers(httpHeaders -> httpHeaders
