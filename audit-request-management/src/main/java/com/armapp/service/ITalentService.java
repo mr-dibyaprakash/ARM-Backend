@@ -2,6 +2,8 @@ package com.armapp.service;
 
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Talent;
+import com.armapp.model.TalentProject;
+import com.armapp.vo.TalentVO;
 
 import java.util.List;
 import java.util.Set;
@@ -23,7 +25,5 @@ public interface ITalentService {
 
     List<Talent> getAll();
 
-
     List<Talent> getByTalentNameLike(String keyword);
-    public String getByTalentName(String talentName);
 }

@@ -20,7 +20,7 @@ import java.util.Set;
 @ToString
 public class Request {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer requestId;
     //    @Enumerated(EnumType.STRING)
     private String priority;
@@ -38,6 +38,7 @@ public class Request {
     private LocalDate contractDate;
     private LocalDate auditStartDate;
     private LocalDate auditEndDate;
+    private String contractNo;
 
     @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
     private RequestSchedule requestSchedule;

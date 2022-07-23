@@ -3,7 +3,9 @@ package com.armapp.service;
 import com.armapp.exception.InvalidIdException;
 import com.armapp.model.Project;
 import com.armapp.model.Talent;
+import com.armapp.model.TalentProject;
 import com.armapp.repository.TalentRepository;
+import com.armapp.vo.TalentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -95,8 +97,6 @@ public class TalentServiceImpl implements ITalentService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public String getByTalentName(String talentName) {
-        return talentRepository.findByTalentName(talentName);
-    }
+
 }
+

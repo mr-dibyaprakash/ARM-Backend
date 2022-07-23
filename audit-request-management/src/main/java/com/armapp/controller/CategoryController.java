@@ -2,12 +2,15 @@ package com.armapp.controller;
 
 import com.armapp.model.Category;
 import com.armapp.service.ICategoryService;
+import com.armapp.vo.CategoryVO;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -96,4 +99,20 @@ public class CategoryController {
     ResponseEntity<List<Category>> getAllCategories(){
         return ResponseEntity.ok(categoryService.getAll());
     }
+
+    @GetMapping("/categories_vo")
+    ResponseEntity<List<CategoryVO>> getAllTasksAssignedTo() {
+        DozerBeanMapper mapper = new DozerBeanMapper();
+        List<Category> categories = categoryService.getAll();
+        List<CategoryVO>categoryVOList = new ArrayList<>();
+        List<String> myMappingFiles = new ArrayList<>();
+        myMappingFiles.add("dozerBeanMapping.xml");
+        mapper.setMappingFiles(myMappingFiles);
+        for (Category category : categories) {
+            CategoryVO categoryVO = mapper.map(category, CategoryVO.class);
+            categoryVOList.add(categoryVO);
+        }
+        return ResponseEntity.ok().body(categoryVOList);
+    }
+
 }

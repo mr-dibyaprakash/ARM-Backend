@@ -15,7 +15,11 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
-    @Query("from Project p inner join p.production pd where p.projectName like ?1")
-    List<Project> findAllProjectVos(String name);
+    @Query("from Project p where p.production.productionId = :productionId")
+    List<Project> findAllProjectNames(Integer productionId);
+
+    @Query("from Project p where p.production.productionId = :productionId and p.projectName like :typedProjectName")
+    List<Project> findTypedProjectNames(Integer productionId,String typedProjectName);
+
 
 }
