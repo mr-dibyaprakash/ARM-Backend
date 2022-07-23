@@ -50,38 +50,38 @@ public class AwsS3Controller {
 
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam("files") MultipartFile[] files, Integer requestId, Integer taskId){
-        Assets assets = new Assets();
-        assets.setCreatedAt(LocalDateTime.now());
-        final String[] filePrefix = {null};
-        String message;
-        try{
+    public ResponseEntity<String> uploadFile(@RequestParam("files") MultipartFile[] files, Integer requestId, Integer taskId) {
+        // final String[] filePrefix = {null};
+        String message = null;
+        try {
             List<String> fileNames = new ArrayList<>();
-            List<Assets> assetList = new ArrayList<>();
-            Arrays.asList(files).stream().forEach(file -> {
-                if(requestId != null) {
-                    filePrefix[0] = "r"+"_"+requestId+"_";
+            // List<Assets> assetList = new ArrayList<>();
+            String filePrefix = null;
+            for (MultipartFile file : files) {
+                Assets assets = new Assets();
+                assets.setCreatedAt(LocalDateTime.now());
+                if (requestId != null) {
+                    filePrefix = "r" + "_" + requestId + "_";
                     Request request = requestRepository.findById(requestId).get();
                     assets.setRequest(request);
-                    assets.setAssetName(filePrefix[0] + file.getOriginalFilename());
-                    assetList.add(assets);
-                    awsS3Service.uploadFile(file, filePrefix[0]);
+                    assets.setAssetName(filePrefix + file.getOriginalFilename());
+                    // assetList.add(assets);
+                    awsS3Service.uploadFile(file, filePrefix);
                     assetsService.addAssets(assets);
                     fileNames.add(file.getOriginalFilename());
-                }
-                if(taskId!=null) {
-                    filePrefix[0] = "t"+"_"+taskId+"_";
+                } else if (taskId != null) {
+                    filePrefix = "t" + "_" + taskId + "_";
                     Task task = taskRepository.findById(taskId).get();
                     assets.setTask(task);
-                    assets.setAssetName(filePrefix[0] + file.getOriginalFilename());
-                    assetList.add(assets);
-                    awsS3Service.uploadFile(file, filePrefix[0]);
+                    assets.setAssetName(filePrefix + file.getOriginalFilename());
+                    // assetList.add(assets);
+                    awsS3Service.uploadFile(file, filePrefix);
                     assetsService.addAssets(assets);
                     fileNames.add(file.getOriginalFilename());
                 }
-            });
+            }
 //            assetsService.addAssets(assetList);
-            message = "Uploaded the files successfully: "+ fileNames;
+            message = "Uploaded the files successfully: " + fileNames;
             return ResponseEntity.ok().body(message);
         } catch (Exception e) {
             message = " Failed to upload files!";
@@ -90,7 +90,7 @@ public class AwsS3Controller {
     }
 
     @GetMapping("/download/{fileName}")
-    public ResponseEntity<InputStreamResource> downloadFile(@PathVariable("fileName") String fileName){
+    public ResponseEntity<InputStreamResource> downloadFile(@PathVariable("fileName") String fileName) {
         InputStreamResource resource = new InputStreamResource(awsS3Service.downloadFile((fileName)));
         return ResponseEntity
                 .ok()
@@ -101,13 +101,13 @@ public class AwsS3Controller {
     }
 
     @DeleteMapping("/delete/{fileName}")
-    public ResponseEntity<String> deleteFile(@PathVariable("fileName") String fileName){
+    public ResponseEntity<String> deleteFile(@PathVariable("fileName") String fileName) {
         return ResponseEntity.ok(awsS3Service.deleteFile(fileName));
     }
 
     @GetMapping("/generate-upload-url")
     public ResponseEntity<String> generateUploadUrl() {
         return ResponseEntity.ok(
-                awsS3Service.generatePreSignedUrl(UUID.randomUUID()+".txt", "gryffindors-fp", HttpMethod.PUT));
+                awsS3Service.generatePreSignedUrl(UUID.randomUUID() + ".txt", "gryffindors-fp", HttpMethod.PUT));
     }
 }
