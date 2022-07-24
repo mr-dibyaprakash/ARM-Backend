@@ -82,23 +82,17 @@ public class AwsS3Service {
 
     // for getting all the files in a bucket
     public List<String> listFiles() {
-        ListObjectsRequest listObjectsRequest =
-                new ListObjectsRequest()
-                        .withBucketName(s3BucketName);
-        List<String> keys = new ArrayList<>();
-        ObjectListing objects = amazonS3.listObjects(listObjectsRequest);
-        while (true) {
-            List<S3ObjectSummary> objectSummaries = objects.getObjectSummaries();
-            if (objectSummaries.size() < 1) {
-                break;
+        ObjectListing objectListing = amazonS3.listObjects(s3BucketName);
+        List<String> files = new ArrayList<>();
+        if (objectListing != null) {
+            List<S3ObjectSummary> s3ObjectSummariesList = objectListing.getObjectSummaries();
+            if (!s3ObjectSummariesList.isEmpty()) {
+                for (S3ObjectSummary objectSummary : s3ObjectSummariesList) {
+                    files.add(objectSummary.getKey());
+                }
             }
-            for (S3ObjectSummary item : objectSummaries) {
-                if (!item.getKey().contains("_"))
-                    keys.add(item.getKey());
-            }
-            objects = amazonS3.listNextBatchOfObjects(objects);
         }
-        return keys;
+        return files;
     }
 
     // for converting multipart file to file format

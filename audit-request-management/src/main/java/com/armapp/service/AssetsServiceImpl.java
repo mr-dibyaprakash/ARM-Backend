@@ -26,4 +26,6 @@ public class AssetsServiceImpl implements IAssetsService {
     public void addAssets(Assets assets) {
         assetsRepository.save(assets);
     }
+
+
 }

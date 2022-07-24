@@ -29,7 +29,7 @@ import java.util.*;
  */
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 public class AwsS3Controller {
 
     private AwsS3Service awsS3Service;
@@ -51,8 +51,7 @@ public class AwsS3Controller {
 
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("files") MultipartFile[] files, Integer requestId, Integer taskId) {
-        // final String[] filePrefix = {null};
-        String message = null;
+        String message;
         try {
             List<String> fileNames = new ArrayList<>();
             // List<Assets> assetList = new ArrayList<>();
@@ -65,7 +64,6 @@ public class AwsS3Controller {
                     Request request = requestRepository.findById(requestId).get();
                     assets.setRequest(request);
                     assets.setAssetName(filePrefix + file.getOriginalFilename());
-                    // assetList.add(assets);
                     awsS3Service.uploadFile(file, filePrefix);
                     assetsService.addAssets(assets);
                     fileNames.add(file.getOriginalFilename());
@@ -74,19 +72,35 @@ public class AwsS3Controller {
                     Task task = taskRepository.findById(taskId).get();
                     assets.setTask(task);
                     assets.setAssetName(filePrefix + file.getOriginalFilename());
-                    // assetList.add(assets);
                     awsS3Service.uploadFile(file, filePrefix);
                     assetsService.addAssets(assets);
                     fileNames.add(file.getOriginalFilename());
                 }
             }
-//            assetsService.addAssets(assetList);
             message = "Uploaded the files successfully: " + fileNames;
             return ResponseEntity.ok().body(message);
         } catch (Exception e) {
             message = " Failed to upload files!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
+    }
+
+    @GetMapping("/listFiles")
+    public ResponseEntity<List<String>> fileList(@RequestParam(name = "requestId", required = false)
+                                                             Integer requestId,
+                                                 @RequestParam(name = "taskId", required = false)
+                                                         Integer taskId) {
+        List<String> fileList = awsS3Service.listFiles();
+        List<String> files = new ArrayList<>();
+        fileList.forEach(file -> {
+            if(file.startsWith("r_"+requestId+"_")){
+                files.add(file.substring(4));
+            }
+            else if (file.startsWith("t_"+taskId+"_")){
+                files.add(file.substring(4));
+            }
+        });
+        return ResponseEntity.ok().body(files);
     }
 
     @GetMapping("/download/{fileName}")
