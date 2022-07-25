@@ -25,5 +25,6 @@ public class TaskVO {
     private LocalDate requestRaised;
     private LocalDate requestClosed;
     private String contractNo;
-
+    private String taskCreator;
+    private String reportOwner;
 }

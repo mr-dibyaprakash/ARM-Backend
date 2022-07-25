@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/api")
 public class MessageController {
 
     @Autowired
@@ -44,9 +45,9 @@ public class MessageController {
             msgVo.setCreatedAt(savedMsg.getCreatedAt());
             msgVo.setMessageText(savedMsg.getMessageText());
             msgVo.setFrom(savedMsg.getMessageFrom().getOwnerId().toString());
-            msgVo.setFromUserName(savedMsg.getMessageFrom().getOwnerName());
+            msgVo.setFromUserName(savedMsg.getMessageFrom().getOwnerUserId());
             msgVo.setTo(savedMsg.getMessageTo().getOwnerId().toString());
-            msgVo.setToUserName(savedMsg.getMessageTo().getOwnerName());
+            msgVo.setToUserName(savedMsg.getMessageTo().getOwnerUserId());
             msgVo.setTaskId(savedMsg.getTask().getTaskId());
             msgVo.setSeen(savedMsg.isSeen());
             messagesList.add(msgVo);

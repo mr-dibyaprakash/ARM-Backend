@@ -46,6 +46,8 @@ public class TaskController {
             taskVO.setAuditEndDate(task.getRequest().getRequestSchedule().getAuditEndDate());
             taskVO.setRequestRaised(task.getRequest().getRequestSchedule().getRequestCreated());
             taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
+            taskVO.setTaskCreator(task.getRequest().getCreatedBy());
+            taskVO.setReportOwner(task.getCategory().getOwner().getOwnerUserId());
             taskList.add(taskVO);
 
         }
@@ -75,6 +77,8 @@ public class TaskController {
             taskVO.setAuditEndDate(task.getRequest().getRequestSchedule().getAuditEndDate());
             taskVO.setRequestRaised(task.getRequest().getRequestSchedule().getRequestCreated());
             taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
+            taskVO.setTaskCreator(task.getRequest().getCreatedBy());
+            taskVO.setReportOwner(task.getCategory().getOwner().getOwnerUserId());
             taskList.add(taskVO);
 
         }
@@ -96,6 +100,8 @@ public class TaskController {
         taskVO.setAuditEndDate(task.getRequest().getRequestSchedule().getAuditEndDate());
         taskVO.setRequestRaised(task.getRequest().getRequestSchedule().getRequestCreated());
         taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
+        taskVO.setTaskCreator(task.getRequest().getCreatedBy());
+        taskVO.setReportOwner(task.getCategory().getOwner().getOwnerUserId());
         return ResponseEntity.ok().body(taskVO);
     }
 }
