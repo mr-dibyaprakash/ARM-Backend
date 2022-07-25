@@ -6,7 +6,7 @@ status varchar(45) NOT NULL,
 production_name varchar(100) NOT NULL,
 project_name varchar(100) NOT NULL,
 talent_name varchar(100) NOT NULL,
-production_number varchar(100) NOT NULL,
+contract_no varchar(100) NOT NULL,
 request_created_date date NOT NULL,
 audit_start_date date NOT NULL,
 audit_end_date date NOT NULL,
@@ -19,5 +19,5 @@ is_deleted boolean DEFAULT false,
 PRIMARY KEY(request_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into request (request_id, priority, union_name, status, production_name, talent_name, production_number, project_name, request_created_date,
+insert into request (request_id, priority, union_name, status, production_name, talent_name, contract_no, project_name, request_created_date,
 audit_start_date, audit_end_date, contract_date, created_by) values (1, "HIGH", "DAG", "Completed", "Marvel Studios", "Florence Pugh","Test", "P_123", now(), now(), now(), now(), "Test")

@@ -33,7 +33,6 @@ public class Request {
     private String productionName;
     private String projectName;
     private String talentName;
-    private String productionNumber;
     private LocalDate requestCreatedDate;
     private LocalDate contractDate;
     private LocalDate auditStartDate;
