@@ -108,5 +108,9 @@
             <b>ownerName</b>
         </field>
     </mapping>
+    <mapping>
+        <class-a>com.armapp.model.ReqID</class-a>
+        <class-b>com.armapp.vo.ReqIDVO</class-b>
+    </mapping>
 
 </mappings>

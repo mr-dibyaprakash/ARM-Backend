@@ -1,7 +1,11 @@
 package com.armapp.controller;
 
 import com.armapp.model.ReqID;
+import com.armapp.model.Talent;
 import com.armapp.service.IReqIDService;
+import com.armapp.vo.ReqIDVO;
+import com.armapp.vo.TalentVO;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.security.RolesAllowed;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -27,14 +33,19 @@ public class ReqIDController {
 
     @GetMapping("/reqid")
     @RolesAllowed("manager")
-    ResponseEntity<ReqID> getNextReqID() {
+    ResponseEntity<ReqIDVO> getNextReqID() {
         ReqID reqID = new ReqID();
         reqID.setCreatedAt(LocalDateTime.now());
         ReqID newReqId = IReqIDService.createReqID(reqID);
+        DozerBeanMapper mapper = new DozerBeanMapper();
+        List<String> myMappingFiles = new ArrayList<String>();
+        myMappingFiles.add("dozerBeanMapping.xml");
+        mapper.setMappingFiles(myMappingFiles);
+           ReqIDVO reqIdVO = mapper.map(newReqId, ReqIDVO.class);
         return ResponseEntity.status(HttpStatus.OK)
                 .headers(httpHeaders -> httpHeaders
                         .add("desc", "new req id"))
-                .body(newReqId);
+                .body(reqIdVO);
     }
 
 }
