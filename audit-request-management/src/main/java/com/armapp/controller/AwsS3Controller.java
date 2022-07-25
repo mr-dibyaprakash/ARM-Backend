@@ -86,9 +86,9 @@ public class AwsS3Controller {
     }
 
     @GetMapping("/listFiles")
-    public ResponseEntity<List<String>> fileList(@RequestParam(name = "requestId", required = false)
+    public ResponseEntity<List<String>> fileList(@RequestParam(name = "request_id", required = false)
                                                              Integer requestId,
-                                                 @RequestParam(name = "taskId", required = false)
+                                                 @RequestParam(name = "task_id", required = false)
                                                          Integer taskId) {
         List<String> fileList = awsS3Service.listFiles();
         List<String> files = new ArrayList<>();
