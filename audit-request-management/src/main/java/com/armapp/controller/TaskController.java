@@ -47,8 +47,9 @@ public class TaskController {
             taskVO.setProjectName(task.getRequest().getProjectName());
             taskVO.setTalentName(task.getRequest().getTalentName());
             taskVO.setPriority(task.getRequest().getPriority());
-            taskVO.setAuditStartDate(task.getRequest().getRequestSchedule().getAuditStartDate());
-            taskVO.setAuditEndDate(task.getRequest().getRequestSchedule().getAuditEndDate());
+            taskVO.setAuditStartDate(task.getRequest().getAuditStartDate());
+            taskVO.setAuditEndDate(task.getRequest().getAuditEndDate());
+            taskVO.setContractNo((task.getRequest().getContractNo()));
             taskVO.setRequestRaised(task.getRequest().getRequestSchedule().getRequestCreated());
             taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
             taskVO.setTaskCreator(task.getRequest().getCreatedBy());
