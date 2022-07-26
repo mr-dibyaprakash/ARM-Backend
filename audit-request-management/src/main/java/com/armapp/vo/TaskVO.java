@@ -27,4 +27,6 @@ public class TaskVO {
     private String contractNo;
     private String taskCreator;
     private String reportOwner;
+    private String taskCreatorFullName;
+    private String reportOwnerFullName;
 }

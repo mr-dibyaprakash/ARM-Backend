@@ -20,4 +20,5 @@ public class MessageVO {
     private String messageText;
     private boolean isDeleted;
     private boolean isSeen;
+
 }

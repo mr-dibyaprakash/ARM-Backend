@@ -111,7 +111,6 @@ public class MessageController {
         msgVo.setTo(savedMsg.getMessageTo().getOwnerId().toString());
         msgVo.setToUserName(savedMsg.getMessageTo().getOwnerUserId());
         msgVo.setTaskId(savedMsg.getTask().getTaskId());
-        msgVo.setSeen(savedMsg.isSeen());
         return ResponseEntity.status(HttpStatus.OK)
                 .headers(httpHeaders -> httpHeaders
                         .add("desc", "all messages"))

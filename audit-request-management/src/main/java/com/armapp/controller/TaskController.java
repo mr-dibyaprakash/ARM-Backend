@@ -1,6 +1,8 @@
 package com.armapp.controller;
 
+import com.armapp.model.Owner;
 import com.armapp.model.Task;
+import com.armapp.repository.OwnerRepository;
 import com.armapp.service.ITaskService;
 import com.armapp.vo.TaskVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class TaskController {
 
     @Autowired
     private ITaskService iTaskService;
+
+    @Autowired
+    private OwnerRepository ownerRepository;
 
     @GetMapping("/tasks")
     @RolesAllowed("report_owner")
@@ -48,6 +53,8 @@ public class TaskController {
             taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
             taskVO.setTaskCreator(task.getRequest().getCreatedBy());
             taskVO.setReportOwner(task.getCategory().getOwner().getOwnerUserId());
+            taskVO.setReportOwnerFullName(task.getCategory().getOwner().getOwnerName());
+            taskVO.setTaskCreatorFullName(ownerRepository.getByOwnerUserId(task.getCreatedBy()).getOwnerName());
             taskList.add(taskVO);
 
         }
@@ -62,6 +69,7 @@ public class TaskController {
     @GetMapping("/tasks-vo")
     ResponseEntity<List<TaskVO>> getAllTasksAssignedTo() {
         List<Task> tasks = iTaskService.findAll();
+
         //  List<String> contractNumber = iContract.findByContractNum(int talentId,int projectId);
         List<TaskVO> taskList = new ArrayList<>();
         for (Task task : tasks) {
@@ -79,6 +87,8 @@ public class TaskController {
             taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
             taskVO.setTaskCreator(task.getRequest().getCreatedBy());
             taskVO.setReportOwner(task.getCategory().getOwner().getOwnerUserId());
+            taskVO.setReportOwnerFullName(task.getCategory().getOwner().getOwnerName());
+            taskVO.setTaskCreatorFullName(ownerRepository.getByOwnerUserId(task.getCreatedBy()).getOwnerName());
             taskList.add(taskVO);
 
         }
@@ -86,6 +96,7 @@ public class TaskController {
     }
     @GetMapping("/taskVo/taskId/{taskId}")
     ResponseEntity<TaskVO> getTaskById(@PathVariable("taskId") String taskId) {
+
         Task task = iTaskService.getByTaskId(Integer.valueOf(taskId));
         TaskVO taskVO = new TaskVO();
         taskVO.setTaskId(task.getTaskId());
@@ -102,6 +113,10 @@ public class TaskController {
         taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
         taskVO.setTaskCreator(task.getRequest().getCreatedBy());
         taskVO.setReportOwner(task.getCategory().getOwner().getOwnerUserId());
+        taskVO.setReportOwnerFullName(task.getCategory().getOwner().getOwnerName());
+        taskVO.setTaskCreatorFullName(ownerRepository.getByOwnerUserId(task.getCreatedBy()).getOwnerName());
+
+
         return ResponseEntity.ok().body(taskVO);
     }
 }
