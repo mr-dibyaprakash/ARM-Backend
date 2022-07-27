@@ -55,8 +55,7 @@ public class TaskController {
             taskVO.setTaskCreator(task.getRequest().getCreatedBy());
             taskVO.setReportOwner(task.getCategory().getOwner().getOwnerUserId());
             taskVO.setReportOwnerFullName(task.getCategory().getOwner().getOwnerName());
-
-
+            boolean assetStatus = task.getAssets() == null? false: true;
             taskVO.setAssetExists(assetStatus);
             taskVO.setTaskCreatorFullName(ownerRepository.getByOwnerUserId(task.getCreatedBy()).getOwnerName());
             taskList.add(taskVO);
