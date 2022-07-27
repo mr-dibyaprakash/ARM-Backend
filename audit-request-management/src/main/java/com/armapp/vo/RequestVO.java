@@ -27,6 +27,7 @@ public class RequestVO {
     private String talentName;
     private RequestScheduleVO requestSchedule;
     private String contractNo;
+    private boolean assetExists;
 //    private Set<Task> tasks;
 
 }

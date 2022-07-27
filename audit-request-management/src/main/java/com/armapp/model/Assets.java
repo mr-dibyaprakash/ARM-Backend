@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+
 public class Assets implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

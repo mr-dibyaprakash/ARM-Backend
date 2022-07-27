@@ -45,7 +45,9 @@ public class RequestController {
         myMappingFiles.add("dozerBeanMapping.xml");
         mapper.setMappingFiles(myMappingFiles);
         for (Request request : requests) {
+            boolean assetStatus = request.getAssets() == null? false: true;
             RequestVO requestVO = mapper.map(request, RequestVO.class);
+            requestVO.setAssetExists(assetStatus);
             requestVOList.add(requestVO);
         }
         return ResponseEntity.status(HttpStatus.OK)
@@ -69,7 +71,9 @@ public class RequestController {
         myMappingFiles.add("dozerBeanMapping.xml");
         mapper.setMappingFiles(myMappingFiles);
         for (Request request : requests) {
+            boolean assetStatus = request.getAssets() == null? false: true;
             RequestVO requestVO = mapper.map(request, RequestVO.class);
+            requestVO.setAssetExists(assetStatus);
             requestVOList.add(requestVO);
         }
         return ResponseEntity.status(HttpStatus.OK)

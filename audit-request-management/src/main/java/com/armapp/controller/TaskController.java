@@ -49,12 +49,15 @@ public class TaskController {
             taskVO.setPriority(task.getRequest().getPriority());
             taskVO.setAuditStartDate(task.getRequest().getAuditStartDate());
             taskVO.setAuditEndDate(task.getRequest().getAuditEndDate());
-            taskVO.setContractNo((task.getRequest().getContractNo()));
+            taskVO.setContractNo(task.getRequest().getContractNo());
             taskVO.setRequestRaised(task.getRequest().getRequestSchedule().getRequestCreated());
             taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
             taskVO.setTaskCreator(task.getRequest().getCreatedBy());
             taskVO.setReportOwner(task.getCategory().getOwner().getOwnerUserId());
             taskVO.setReportOwnerFullName(task.getCategory().getOwner().getOwnerName());
+
+
+            taskVO.setAssetExists(assetStatus);
             taskVO.setTaskCreatorFullName(ownerRepository.getByOwnerUserId(task.getCreatedBy()).getOwnerName());
             taskList.add(taskVO);
 

@@ -44,6 +44,9 @@ public class Request {
 
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
     private Set<Task> tasksList;
+
+    @OneToMany(mappedBy = "request")
+    private Set<Assets> assets;
     // your list page should be based on this col value
     private String createdBy;
     private LocalDateTime createdAt;

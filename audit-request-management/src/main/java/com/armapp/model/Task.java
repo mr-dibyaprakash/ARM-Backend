@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
  * @author - Akash Kanaparthi
@@ -33,6 +34,9 @@ public class Task {
     @OneToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "task")
+    private Set<Assets> assets;
 
     private String createdBy;
     private LocalDateTime createdAt;

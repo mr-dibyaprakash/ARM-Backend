@@ -29,4 +29,5 @@ public class TaskVO {
     private String reportOwner;
     private String taskCreatorFullName;
     private String reportOwnerFullName;
+    private boolean assetExists;
 }

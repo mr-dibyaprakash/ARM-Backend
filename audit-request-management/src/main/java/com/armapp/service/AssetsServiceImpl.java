@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @author Dibya Prakash Ojha
@@ -27,5 +28,18 @@ public class AssetsServiceImpl implements IAssetsService {
         assetsRepository.save(assets);
     }
 
+    @Override
+    public List<Assets> getAllAssets() {
+        return assetsRepository.findAll();
+    }
 
+    @Override
+    public List<Assets> getByTaskId(Integer taskId) {
+        return assetsRepository.findByTaskId(taskId);
+    }
+
+    @Override
+    public List<Assets> getByRequestId(Integer taskId) {
+        return assetsRepository.findByRequestId(taskId);
+    }
 }
