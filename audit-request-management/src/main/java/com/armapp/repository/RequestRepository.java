@@ -11,4 +11,5 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 
     @Query(value="SELECT r FROM Request r WHERE r.createdBy = :createBy")
     List<Request> findByAssignedUserId(String createBy);
+
 }

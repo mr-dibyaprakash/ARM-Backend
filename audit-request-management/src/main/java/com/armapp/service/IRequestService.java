@@ -13,6 +13,7 @@ import java.util.List;
 public interface IRequestService {
     Request save(Request request);
     List<Request> getAll();
+    Request getById(Integer id);
     List<Request> findByAssignedUserId(String createdByUser);
 
 }

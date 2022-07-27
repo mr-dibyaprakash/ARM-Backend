@@ -55,6 +55,14 @@ public class RequestController {
                         .add("desc", "get request vo list"))
                 .body(requestVOList);
     }
+    @GetMapping("/request/id/{id}")
+    ResponseEntity<Request> getRequestById(@PathVariable("id") Integer id) {
+        Request request = iRequestService.getById(id);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(httpHeaders -> httpHeaders
+                        .add("desc", "get request by id"))
+                .body(request);
+    }
 
 
     /**
