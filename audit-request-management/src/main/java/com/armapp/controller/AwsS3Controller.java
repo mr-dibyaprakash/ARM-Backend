@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.security.RolesAllowed;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -95,25 +96,15 @@ public class AwsS3Controller {
      * @return List of files uploaded to AWS S3
      */
     @GetMapping("/listFiles")
-    public ResponseEntity<List<String>> fileList(@RequestParam(name = "request_id", required = false)
-                                                         Integer requestId,
-                                                 @RequestParam(name = "task_id", required = false)
-                                                         Integer taskId) {
+//    @RolesAllowed({"manager","report_owner"})
+    public List<Assets> fileList(@RequestParam(name = "request_id", required = false)
+                                         Integer requestId,
+                                 @RequestParam(name = "task_id", required = false)
+                                         Integer taskId) {
 
-        List<String> fileList = assetsService.getAllAssets()
+        return assetsService.getAllAssets()
                 .stream().filter(asset -> !asset.isDeleted())
-                .map(Assets::getAssetName)
                 .collect(Collectors.toList());
-        List<String> files = new ArrayList<>();
-        fileList.forEach(file -> {
-            if(file.startsWith("r_"+requestId+"_")){
-                files.add(file.substring(4));
-            }
-            else if (file.startsWith("t_"+taskId+"_")){
-                files.add(file.substring(4));
-            }
-        });
-        return ResponseEntity.ok().body(files);
     }
 
     /**
@@ -123,12 +114,7 @@ public class AwsS3Controller {
      */
     @GetMapping("/delete/{fileId}")
     public ResponseEntity<String> deleteFiles(@PathVariable("fileId") Integer fileId){
-        List<Assets> allAssets = assetsService.getAllAssets();
-        for (Assets asset : allAssets) {
-            if (asset.getAssetId().equals(fileId)) {
-                asset.setDeleted(true);
-            }
-        }
+        assetsService.deleteAsset(fileId);
         return ResponseEntity.ok().body("File Deleted successfully");
     }
 

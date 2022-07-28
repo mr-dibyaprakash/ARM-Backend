@@ -42,4 +42,11 @@ public class AssetsServiceImpl implements IAssetsService {
     public List<Assets> getByRequestId(Integer taskId) {
         return assetsRepository.findByRequestId(taskId);
     }
+
+    @Override
+    public void deleteAsset(Integer assetId){
+        Assets asset = assetsRepository.findById(assetId).get();
+        asset.setDeleted(true);
+        assetsRepository.save(asset);
+    }
 }

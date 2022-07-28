@@ -1,5 +1,6 @@
 package com.armapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,6 +48,7 @@ public class Request implements Serializable {
     private Set<Task> tasksList;
 
     @OneToMany(mappedBy = "request")
+    @JsonIgnore
     private Set<Assets> assets;
     // your list page should be based on this col value
     private String createdBy;

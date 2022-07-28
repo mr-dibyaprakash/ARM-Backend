@@ -17,4 +17,6 @@ public interface IAssetsService {
     List<Assets> getByTaskId(Integer taskId);
 
     List<Assets> getByRequestId(Integer requestId);
+
+    void deleteAsset(Integer assetId);
 }

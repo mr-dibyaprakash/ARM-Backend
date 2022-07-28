@@ -36,6 +36,7 @@ public class Task {
     private Category category;
 
     @OneToMany(mappedBy = "task")
+    @JsonIgnore
     private Set<Assets> assets;
 
     private String createdBy;
