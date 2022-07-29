@@ -2,6 +2,8 @@ CREATE TABLE  IF NOT EXISTS `task` (
 task_id integer  NOT NULL AUTO_INCREMENT,
 request_id integer,
 category_id integer,
+audit_start_date date NOT NULL,
+audit_end_date date NOT NULL,
 closed_at TIMESTAMP DEFAULT NULL,
 created_by varchar(100) NOT NULL,
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

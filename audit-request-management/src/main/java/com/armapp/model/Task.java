@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -38,6 +39,8 @@ public class Task {
     @OneToMany(mappedBy = "task")
     @JsonIgnore
     private Set<Assets> assets;
+    private LocalDate auditStartDate;
+    private LocalDate auditEndDate;
 
     private String createdBy;
     private LocalDateTime createdAt;

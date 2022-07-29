@@ -37,8 +37,7 @@ public class Request implements Serializable {
     private String talentName;
     private LocalDate requestCreatedDate;
     private LocalDate contractDate;
-    private LocalDate auditStartDate;
-    private LocalDate auditEndDate;
+
     private String contractNo;
 
     @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)

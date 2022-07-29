@@ -30,8 +30,6 @@ public class CreateRequestVO {
     private RequestSchedule requestSchedule;
     private String status;
     private LocalDate contractDate;
-    private LocalDate auditStartDate;
-    private LocalDate auditEndDate;
     private Set<Task> tasksList;
     private String createdBy;
     private String contractNo;

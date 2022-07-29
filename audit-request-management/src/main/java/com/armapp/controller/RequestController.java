@@ -103,8 +103,6 @@ public class RequestController {
         request.setContractNo(createRequestVO.getContractNo());
         request.setProjectName(createRequestVO.getProjectName());
         request.setRequestCreatedDate(createRequestVO.getRequestSchedule().getRequestCreated());
-        request.setAuditStartDate(createRequestVO.getAuditStartDate());
-        request.setAuditEndDate(createRequestVO.getAuditEndDate());
         request.setContractDate(createRequestVO.getContractDate());
         request.setCreatedBy(createRequestVO.getCreatedBy());
         request.setCreatedAt(LocalDateTime.now());
@@ -124,6 +122,8 @@ public class RequestController {
             categoryById = categoryRepo.findById(category.getCategoryId()).get();
             task.setRequest(request);
             task.setCategory(categoryById);
+            task.setAuditStartDate(task1.getAuditStartDate());
+            task.setAuditEndDate(task1.getAuditEndDate());
             task.setCreatedAt(LocalDateTime.now());
             task.setCreatedBy(createRequestVO.getCreatedBy());
             taskSet.add(task);

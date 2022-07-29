@@ -1,6 +1,5 @@
 package com.armapp.controller;
 
-import com.armapp.model.Owner;
 import com.armapp.model.Task;
 import com.armapp.repository.OwnerRepository;
 import com.armapp.service.ITaskService;
@@ -47,8 +46,8 @@ public class TaskController {
             taskVO.setProjectName(task.getRequest().getProjectName());
             taskVO.setTalentName(task.getRequest().getTalentName());
             taskVO.setPriority(task.getRequest().getPriority());
-            taskVO.setAuditStartDate(task.getRequest().getAuditStartDate());
-            taskVO.setAuditEndDate(task.getRequest().getAuditEndDate());
+            taskVO.setAuditStartDate(task.getAuditStartDate());
+            taskVO.setAuditEndDate(task.getAuditEndDate());
             taskVO.setContractNo(task.getRequest().getContractNo());
             taskVO.setRequestRaised(task.getRequest().getRequestSchedule().getRequestCreated());
             taskVO.setRequestClosed(task.getRequest().getRequestSchedule().getExpectedClosure());
