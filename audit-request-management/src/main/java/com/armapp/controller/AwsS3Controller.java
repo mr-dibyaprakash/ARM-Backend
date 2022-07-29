@@ -121,11 +121,12 @@ public class AwsS3Controller {
     @GetMapping("/download/{fileName}")
     public ResponseEntity<InputStreamResource> downloadFile(@PathVariable("fileName") String fileName) {
         InputStreamResource resource = new InputStreamResource(awsS3Service.downloadFile((fileName)));
+        String fileName1 = fileName.substring(4);
         return ResponseEntity
                 .ok()
                 .cacheControl(CacheControl.noCache())
                 .header("Content-type", "application/octet-stream")
-                .header("Content-disposition", "attachment; filename=\"" + fileName + "\"")
+                .header("Content-disposition", "attachment; filename=\"" + fileName1 + "\"")
                 .body(resource);
     }
 
