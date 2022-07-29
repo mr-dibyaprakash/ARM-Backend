@@ -13,4 +13,7 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     @Query(value="SELECT t FROM Task t WHERE t.taskId = :taskId")
     Task findByTaskId(Integer taskId);
+
+    @Query(value="SELECT t FROM Task t WHERE t.request.requestId = :reqId")
+    List<Task> findTasksByReqId(Integer reqId);
 }

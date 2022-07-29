@@ -54,7 +54,7 @@ public class TaskController {
             taskVO.setTaskCreator(task.getRequest().getCreatedBy());
             taskVO.setReportOwner(task.getCategory().getOwner().getOwnerUserId());
             taskVO.setReportOwnerFullName(task.getCategory().getOwner().getOwnerName());
-            boolean assetStatus = task.getAssets() == null? false: true;
+            boolean assetStatus = task.getAssets() == null ? false : true;
             taskVO.setAssetExists(assetStatus);
             taskVO.setTaskCreatorFullName(ownerRepository.getByOwnerUserId(task.getCreatedBy()).getOwnerName());
             taskList.add(taskVO);
@@ -64,9 +64,8 @@ public class TaskController {
     }
 
     /**
-     *
-     * @author BabaSriHarshaErranki Abuthair
      * @return
+     * @author BabaSriHarshaErranki Abuthair
      */
     @GetMapping("/tasks-vo")
     ResponseEntity<List<TaskVO>> getAllTasksAssignedTo() {
@@ -96,6 +95,7 @@ public class TaskController {
         }
         return ResponseEntity.ok().body(taskList);
     }
+
     @GetMapping("/taskVo/taskId/{taskId}")
     ResponseEntity<TaskVO> getTaskById(@PathVariable("taskId") String taskId) {
 
@@ -120,5 +120,9 @@ public class TaskController {
 
 
         return ResponseEntity.ok().body(taskVO);
+    }
+    @GetMapping("/tasks/reqId/{reqId}")
+    public ResponseEntity<List<Task>> getAllTasksByReqId(@PathVariable("reqId") Integer reqId) {
+        return ResponseEntity.ok(iTaskService.getTasksByReqId(reqId));
     }
 }
