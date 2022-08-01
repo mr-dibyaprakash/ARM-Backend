@@ -102,9 +102,21 @@ public class AwsS3Controller {
                                  @RequestParam(name = "task_id", required = false)
                                          Integer taskId) {
 
-        return assetsService.getAllAssets()
+        List<Assets> assetList = assetsService.getAllAssets()
                 .stream().filter(asset -> !asset.isDeleted())
                 .collect(Collectors.toList());
+
+        List<Assets> filteredAssets = new ArrayList<>();
+        assetList.forEach(asset -> {
+            if(requestId != null && asset.getRequest().getRequestId().equals(requestId)){
+                filteredAssets.add(asset);
+            }
+            else if(taskId != null && asset.getTask().getTaskId().equals(taskId)){
+                filteredAssets.add(asset);
+            }
+        });
+
+        return filteredAssets;
     }
 
     /**
