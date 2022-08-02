@@ -22,7 +22,7 @@ import java.util.Set;
 @ToString
 public class Request implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer requestId;
     //    @Enumerated(EnumType.STRING)
     private String priority;
