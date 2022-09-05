@@ -32,21 +32,43 @@ public class RequestServiceImpl implements IRequestService{
         this.requestRepository = requestRepository;
     }
 
+    /**
+     * to create a new request
+     * @author - BabaSriHarsha
+     * @param request
+     * @return
+     */
     @Override
     public Request save(Request request) {
         return requestRepository.save(request);
     }
 
+    /**
+     * @author - BabaSriHarsha
+     * to get all the requests available
+     * @return
+     */
     @Override
     public List<Request> getAll() {
         return requestRepository.findAll();
     }
 
+    /**
+     * to get details of a particular request
+     * @author - Madhu Shree
+     * @param id
+     * @return
+     */
     @Override
     public Request getById(Integer id) {
         return requestRepository.findById(id).get();
     }
 
+    /**
+     * to get request created by a particular user id
+     * @param createdByUser
+     * @return
+     */
     @Override
     public List<Request> findByAssignedUserId(String createdByUser) {
         return requestRepository.findByAssignedUserId(createdByUser);

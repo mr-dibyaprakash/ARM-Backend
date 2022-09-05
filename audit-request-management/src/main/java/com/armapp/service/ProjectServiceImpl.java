@@ -87,6 +87,12 @@ public class ProjectServiceImpl implements IProjectService{
                 .collect(Collectors.toList());
     }
 
+    /**
+     * to get all the projects available in a production company
+     * @author - Awadhesh
+     * @param productionId
+     * @return
+     */
     @Override
     public List<Project> getAllProjectNames(Integer productionId) {
 
@@ -94,6 +100,13 @@ public class ProjectServiceImpl implements IProjectService{
         return projectRepository.findAllProjectNames(productionId);
     }
 
+    /**
+     * to search for project in a particular production company
+     * @author - Awadhesh
+     * @param productionId
+     * @param typedProjectName
+     * @return
+     */
     @Override
     public List<Project> getTypedProjectNames(Integer productionId, String typedProjectName) {
         return projectRepository.findTypedProjectNames(productionId,typedProjectName+"%");

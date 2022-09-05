@@ -22,27 +22,49 @@ public class AssetsServiceImpl implements IAssetsService {
         this.assetsRepository = assetsRepository;
     }
 
+    /**
+     * to upload a file
+     * @param assets
+     */
     @Override
     @Transactional
     public void addAssets(Assets assets) {
         assetsRepository.save(assets);
     }
 
+    /**
+     * to get all the files available
+     * @return
+     */
     @Override
     public List<Assets> getAllAssets() {
         return assetsRepository.findAll();
     }
 
+    /**
+     * to get the files for a particular task
+     * @param taskId
+     * @return
+     */
     @Override
     public List<Assets> getByTaskId(Integer taskId) {
         return assetsRepository.findByTaskId(taskId);
     }
 
+    /**
+     * to get the files for a particular request
+     * @param taskId
+     * @return
+     */
     @Override
     public List<Assets> getByRequestId(Integer taskId) {
         return assetsRepository.findByRequestId(taskId);
     }
 
+    /**
+     * to delete a file
+     * @param assetId
+     */
     @Override
     public void deleteAsset(Integer assetId){
         Assets asset = assetsRepository.findById(assetId).get();

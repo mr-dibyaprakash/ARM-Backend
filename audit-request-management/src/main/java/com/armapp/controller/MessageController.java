@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author - Baba Sri Harsha
+ * @date - 20-07-2022
+ * @project - audit-request-management
+ */
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
@@ -33,6 +37,11 @@ public class MessageController {
     public MessageController() {
     }
 
+    /**
+     * to get all the new/previous messages for a particular task conversation
+     * @param taskId
+     * @return
+     */
 
     @GetMapping("/messages/{taskId}")
         // http://localhost:9090/messages/1
@@ -83,6 +92,11 @@ public class MessageController {
                 .body(messages);
     }
 
+    /**
+     * To send a message
+     * @param messageVO
+     * @return
+     */
     @PostMapping("/create/message")
     //http://localhost:9090/create/message
     //    {"taskId": "1",

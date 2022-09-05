@@ -17,10 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.security.RolesAllowed;
 import java.security.Principal;
 
+/**
+ * @author - Awadhesh
+ * @date - 06-07-2022
+ * @project - audit-request-management
+ */
 @RestController
 @CrossOrigin("*")
 public class GreetController {
 
+    /**
+     * Demo controller
+     * @return
+     */
     @GetMapping("/greet")
     @RolesAllowed({"user","admin"})
     ResponseEntity<String> greet()  {

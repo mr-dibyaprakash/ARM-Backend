@@ -130,6 +130,11 @@ public class AwsS3Controller {
         return ResponseEntity.ok().body("File Deleted successfully");
     }
 
+    /**
+     * To download the available assets
+     * @param fileName
+     * @return
+     */
     @GetMapping("/download/{fileName}")
     public ResponseEntity<InputStreamResource> downloadFile(@PathVariable("fileName") String fileName) {
         InputStreamResource resource = new InputStreamResource(awsS3Service.downloadFile((fileName)));
@@ -141,6 +146,12 @@ public class AwsS3Controller {
                 .header("Content-disposition", "attachment; filename=\"" + fileName1 + "\"")
                 .body(resource);
     }
+
+    /**
+     * to download the required file(s) belonging to a particular task in a request
+     * @param taskId
+     * @return
+     */
 
     @GetMapping("/download/task/{taskId}")
     public ResponseEntity<InputStreamResource> downloadFileByTask(@PathVariable("taskId") Integer taskId){
@@ -158,6 +169,12 @@ public class AwsS3Controller {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
     }
 
+    /**
+     * to download the files of a particular request
+     * @param requestId
+     * @return
+     */
+
     @GetMapping("/download/request/{requestId}")
     public ResponseEntity<InputStreamResource> downloadFileByRequest(@PathVariable("requestId") Integer requestId){
         List<Assets> assets = assetsService.getByRequestId(requestId);
@@ -174,11 +191,21 @@ public class AwsS3Controller {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
     }
 
+    /**
+     * to delete a particular file
+     * @param fileName
+     * @return
+     */
+
     @DeleteMapping("/delete/{fileName}")
     public ResponseEntity<String> deleteFile(@PathVariable("fileName") String fileName) {
         return ResponseEntity.ok(awsS3Service.deleteFile(fileName));
     }
 
+    /**
+     * To upload a file
+     * @return
+     */
     @GetMapping("/generate-upload-url")
     public ResponseEntity<String> generateUploadUrl() {
         return ResponseEntity.ok(

@@ -15,6 +15,11 @@ import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author - Awadhesh
+ * @date - 12-07-2022
+ * @project - audit-request-management
+ */
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
@@ -25,6 +30,13 @@ public class ProjectController {
     public ProjectController(IProjectService iProjectService) {
         this.iProjectService = iProjectService;
     }
+
+    /**
+     * to search for project names by few or complete letters available in a particular production company
+     * @param productionId
+     * @param typedProjectName
+     * @return
+     */
 
     @GetMapping("/projectNames/productionId/{productionId}/typedProjectName/{typedProjectName}")
 //    @RolesAllowed("manager")
@@ -60,7 +72,11 @@ public class ProjectController {
                 .body(projectVOList);
     }
 
-
+    /**
+     * to get all projects available in a production company
+     * @param productionId
+     * @return
+     */
 
     @GetMapping("/projectNames/productionId/{productionId}")
 //    @RolesAllowed("manager")

@@ -87,6 +87,12 @@ public class ProductionServiceImpl implements IProductionService{
                 .collect(Collectors.toList());
     }
 
+    /**
+     * to search for production company name
+     * @author - MadhuShree
+     * @param companyName
+     * @return
+     */
     @Override
     public List<Production> getByProductionCompanyNameLike(String companyName) {
         return productionRepository.findByProductionCompanyNameLike("%" + companyName + "%")

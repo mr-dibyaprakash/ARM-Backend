@@ -18,7 +18,11 @@ import javax.annotation.security.RolesAllowed;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author - Abuthair Sheika
+ * @date - 21-07-2022
+ * @project - audit-request-management
+ */
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
@@ -30,6 +34,11 @@ public class ReqIDController {
     public void setIReqIDService(com.armapp.service.IReqIDService IReqIDService) {
         this.IReqIDService = IReqIDService;
     }
+
+    /**
+     * to set an id for a new request to be created
+     * @return
+     */
 
     @GetMapping("/reqid")
     @RolesAllowed("manager")

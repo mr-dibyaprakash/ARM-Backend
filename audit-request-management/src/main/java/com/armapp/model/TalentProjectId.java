@@ -9,6 +9,9 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
+/**
+ * @author - Sandeep Pinasimham
+ */
 @Embeddable
 public class TalentProjectId implements Serializable {
     private Talent talent;

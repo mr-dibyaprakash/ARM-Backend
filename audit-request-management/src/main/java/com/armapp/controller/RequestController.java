@@ -16,7 +16,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * @author - Baba Sri Harsha
+ * @date - 18-07-2022
+ * @project - audit-request-management
+ */
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
@@ -35,6 +39,11 @@ public class RequestController {
         this.categoryRepo = categoryRepo;
     }
 
+    /**
+     * to get all the requests raised by particular manager
+     * @param userId
+     * @return
+     */
 
     @GetMapping("/request/{userId}")
     ResponseEntity<List<RequestVO>> getAllRequests(@PathVariable String userId) {
@@ -55,6 +64,13 @@ public class RequestController {
                         .add("desc", "get request vo list"))
                 .body(requestVOList);
     }
+
+    /**
+     * @author - Madhu Shree
+     * to get a request by its id
+     * @param id
+     * @return
+     */
     @GetMapping("/request/id/{id}")
     ResponseEntity<Request> getRequestById(@PathVariable("id") Integer id) {
         Request request = iRequestService.getById(id);
@@ -66,9 +82,11 @@ public class RequestController {
 
 
     /**
+     * to get all requests in VO format
      * @return
      * @author BabaSriHarshaErranki
      */
+
     @GetMapping("/requests-vo")
 //    @RolesAllowed("manager")
     ResponseEntity<List<RequestVO>> getAllRequestVOs() {
@@ -89,6 +107,12 @@ public class RequestController {
                         .add("desc", "get request vo list"))
                 .body(requestVOList);
     }
+
+    /**
+     * to create a new request by manager
+     * @param createRequestVO
+     * @return
+     */
 
     @PostMapping("/requests")
 //    @RolesAllowed("manager")

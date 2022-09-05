@@ -87,7 +87,12 @@ public class TalentServiceImpl implements ITalentService {
                 .collect(Collectors.toList());
     }
 
-
+    /**
+     * to search for a talent name
+     * @author - Sandeep Pinasimham
+     * @param keyword
+     * @return
+     */
     @Override
     public List<Talent> getByTalentNameLike(String keyword) {
         return talentRepository.findByTalentNameLike("%"+keyword+"%")

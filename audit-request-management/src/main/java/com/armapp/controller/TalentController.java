@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author - Sandeep Pinasimham
+ * @date - 13-07-2022
+ * @project - audit-request-management
+ */
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
@@ -31,6 +35,12 @@ public class TalentController {
         this.iTalentService = iTalentService;
     }
 
+    /**
+     * to search for a talent name with few or complete letters in it
+     * @param keyword
+     * @return
+     * @throws NullPointerException
+     */
 
     @GetMapping("/talents/{keyword}")
     @RolesAllowed({"manager","report_owner"})
@@ -52,6 +62,11 @@ public class TalentController {
                     .body(talentsVOList);
     }
 
+    /**
+     * to get all the talents available
+     * @return
+     * @throws NullPointerException
+     */
 
     @GetMapping("/talents")
     @RolesAllowed({"manager","report_owner"})

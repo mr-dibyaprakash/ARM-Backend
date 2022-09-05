@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.*;
-
+/**
+ * @author - Madhu Shree
+ * @date - 10-07-2022
+ * @project - audit-request-management
+ */
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
@@ -23,6 +27,12 @@ public class ProductionController {
     public ProductionController(IProductionService iProductionService) {
         this.iProductionService = iProductionService;
     }
+
+    /**
+     * to search for production company name with few or full letters
+     * @param companyName
+     * @return
+     */
 
     @GetMapping("/productions/{companyName}")
     @RolesAllowed({"manager","report_owner"})
@@ -43,6 +53,10 @@ public class ProductionController {
                 .body(productionVOList);
     }
 
+    /**
+     * to get all the available production companies
+     * @return
+     */
 
     @GetMapping("/productions")
     @RolesAllowed({"manager","report_owner"})
